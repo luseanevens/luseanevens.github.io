@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha256-Z1K5uhUaJXA7Ll0XrZ/0JhX4lAtZFpT6jkKrEDT0drU=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"cherium.top","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.14.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="时隔一年又搭了一次博客，上一次使用hugo是一次完全失败且糟糕的体验，不推荐使用海外的云服务器搭建博客，部署到github还是相对稳定靠谱的。搭这个博客的主要目的是为了让多年来学习总结的知识有一个归宿。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="建站记录">
+<meta property="og:url" content="http://cherium.top/2018/02/04/hexo/index.html">
+<meta property="og:site_name" content="Ladder">
+<meta property="og:description" content="时隔一年又搭了一次博客，上一次使用hugo是一次完全失败且糟糕的体验，不推荐使用海外的云服务器搭建博客，部署到github还是相对稳定靠谱的。搭这个博客的主要目的是为了让多年来学习总结的知识有一个归宿。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/luseanevens/picgo/main/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202023-02-10%20231938.png">
+<meta property="article:published_time" content="2018-02-04T06:12:48.000Z">
+<meta property="article:modified_time" content="2023-08-24T02:03:22.793Z">
+<meta property="article:author" content="cherium">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/luseanevens/picgo/main/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202023-02-10%20231938.png">
+
+
+<link rel="canonical" href="http://cherium.top/2018/02/04/hexo/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://cherium.top/2018/02/04/hexo/","path":"2018/02/04/hexo/","title":"建站记录"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>建站记录 | Ladder</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Ladder</p>
+      <i class="logo-line"></i>
+    </a>
+      <img class="custom-logo-image" src="/images/avatar.png" alt="Ladder">
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Hexo-%E6%A6%82%E8%BF%B0"><span class="nav-number">1.</span> <span class="nav-text">Hexo 概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2"><span class="nav-number">2.</span> <span class="nav-text">搭建博客</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%87%E7%AD%BE%E4%B8%8E%E5%88%86%E7%B1%BB"><span class="nav-number">3.</span> <span class="nav-text">标签与分类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9E%84%E5%BB%BA%E4%B8%8E%E9%83%A8%E7%BD%B2"><span class="nav-number">4.</span> <span class="nav-text">构建与部署</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Token"><span class="nav-number">4.1.</span> <span class="nav-text">Token</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%9F%E5%90%8D"><span class="nav-number">4.2.</span> <span class="nav-text">域名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%8C%E6%AD%A5"><span class="nav-number">4.3.</span> <span class="nav-text">同步</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%BE%E5%BA%8A"><span class="nav-number">5.</span> <span class="nav-text">图床</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E9%93%BE%E6%8E%A5"><span class="nav-number">6.</span> <span class="nav-text">参考链接</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="cherium"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">cherium</p>
+  <div class="site-description" itemprop="description">莫听穿林打叶声，何妨吟啸且徐行</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">26</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="cc-license animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://cherium.top/2018/02/04/hexo/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="cherium">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ladder">
+      <meta itemprop="description" content="莫听穿林打叶声，何妨吟啸且徐行">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="建站记录 | Ladder">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          建站记录
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2018-02-04 14:12:48" itemprop="dateCreated datePublished" datetime="2018-02-04T14:12:48+08:00">2018-02-04</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-08-24 10:03:22" itemprop="dateModified" datetime="2023-08-24T10:03:22+08:00">2023-08-24</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/hexo/" itemprop="url" rel="index"><span itemprop="name">hexo</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>时隔一年又搭了一次博客，上一次使用<code>hugo</code>是一次完全失败且糟糕的体验，不推荐使用海外的云服务器搭建博客，部署到<code>github</code>还是相对稳定靠谱的。搭这个博客的主要目的是为了让多年来学习总结的知识有一个归宿。</p>
+<span id="more"></span>
+
+<h2 id="Hexo-概述"><a href="#Hexo-概述" class="headerlink" title="Hexo 概述"></a>Hexo 概述</h2><p>在搭建博客初期有很多的想法，最终为了管理的方便选择用<code>Hexo</code>博客框架，它能够将<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/zh-hans/Markdown">Markdown格式</a>的文档渲染成漂亮的网页，这样我们就可以在很短的时间内迅速的创建出网站的静态内容。</p>
+<p>由于多次的更换操作系统，各操作系统配置本地环境如下：</p>
+<div class="tabs" id="the-solution"><ul class="nav-tabs"><li class="tab active"><a href="#the-solution-1">macos</a></li><li class="tab"><a href="#the-solution-2">linux</a></li><li class="tab"><a href="#the-solution-3">windows</a></li></ul><div class="tab-content"><div class="tab-pane active" id="the-solution-1"><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">/bin/bash -c &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)&quot;</span><br><span class="line">brew install node</span><br><span class="line">node --version</span><br><span class="line">npm --version</span><br><span class="line">git --version</span><br><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure></div><div class="tab-pane" id="the-solution-2"><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">/bin/bash -c &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)&quot;</span><br><span class="line">brew install node</span><br><span class="line">node --version</span><br><span class="line">npm --version</span><br><span class="line">git --version</span><br><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure></div><div class="tab-pane" id="the-solution-3"><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># https://chocolatey.org/install</span></span><br><span class="line">scoop install nodejs</span><br><span class="line">node --version</span><br><span class="line">npm --version</span><br><span class="line">git --version</span><br><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure></div></div></div>
+
+<p>这样就下载了我们所有需要的本地环境，概括的讲，我们需要<code>node</code>作为本地<code>js</code>解析环境，需要<code>npm</code>作为包管理器，需要<code>git</code>将网站代码部署到<code>github</code>仓库当中。</p>
+<h2 id="搭建博客"><a href="#搭建博客" class="headerlink" title="搭建博客"></a>搭建博客</h2><p>我们先通过下面的命令来创建一个专门保存博客项目的文件夹。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">hexo init blog</span><br><span class="line">cd blog</span><br><span class="line">ls -lR</span><br><span class="line">total 232</span><br><span class="line">-rw-r--r--    1 Hao  staff    1768  8  8 01:15 _config.yml</span><br><span class="line">drwxr-xr-x  274 Hao  staff    8768  8  8 01:19 node_modules</span><br><span class="line">-rw-r--r--    1 Hao  staff  109972  8  8 01:19 package-lock.json</span><br><span class="line">-rw-r--r--    1 Hao  staff     443  8  8 01:15 package.json</span><br><span class="line">drwxr-xr-x    5 Hao  staff     160  8  8 01:15 scaffolds</span><br><span class="line">drwxr-xr-x    3 Hao  staff      96  8  8 01:15 source</span><br><span class="line">drwxr-xr-x    3 Hao  staff      96  8  8 01:15 themes</span><br></pre></td></tr></table></figure>
+
+<blockquote class="blockquote-center">
+<p>说明：<code>_config.yml</code>是博客项目的配置文件；<code>package.json</code>是项目的依赖项文件；<code>scaffolds</code>保存了Markdown文件的模板，也就是向新添加的Markdown文件中默认填充的内容；<code>source</code>目录下有一个名为<code>_post</code>的目录，我们稍后可以将编写好的Markdown文件放到该目录，这样就可以利用Hexo将Markdown文件处理成博客的静态页面，生成的静态页面将置于<code>public</code>目录下；<code>themes</code>文件夹保存了博客使用的主题。</p>
+
+</blockquote>
+
+<p>接着安装自己所需的依赖项：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">npm install</span><br><span class="line">npm install hexo-theme-next@latest</span><br><span class="line"># use Alternate Theme Config</span><br><span class="line">npm install hexo-deployer-git</span><br><span class="line">cp node_modules/hexo-theme-next/_config.yml _config.next.yml</span><br><span class="line">npm install hexo-generator-sitemap </span><br><span class="line">npm install hexo-generator-searchdb </span><br></pre></td></tr></table></figure>
+
+<p>做完上述的操作以后，我们已经可以直接通过下面的命令来生成博客。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo clean                                         # 清除缓存</span><br><span class="line">hexo g                                             # 构建网页</span><br><span class="line">hexo s                                             # 部署本地服务</span><br></pre></td></tr></table></figure>
+
+<p>之后中断进程，建立新博文，其格式如：<code>hexo new [layout] &quot;name&quot;</code>，其中<code>[layout]</code>保存在站点根目录下的<code>scaffolds</code>中，可以按照自己的需求自由构建模板。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo new tags &quot;first&quot; </span><br><span class="line">open ./source/_posts/first.md</span><br></pre></td></tr></table></figure>
+
+<p>之后就可以在默认的<code>markdown</code>编辑器中编辑博文。</p>
+<h2 id="标签与分类"><a href="#标签与分类" class="headerlink" title="标签与分类"></a>标签与分类</h2><p>在<code>Hexo</code>的底层模板中只提供了<code>home</code>和<code>achive</code>的对应页面，<code>tags\categories</code>的页面需要自己构建，再在主题的设置文件中取消注释。</p>
+<div class="tabs" id="the-second-solution"><ul class="nav-tabs"><li class="tab active"><a href="#the-second-solution-1"><i class="fa fa-font"></i>tags</a></li><li class="tab"><a href="#the-second-solution-2"><i class="fa fa-bold"></i>categories</a></li></ul><div class="tab-content"><div class="tab-pane active" id="the-second-solution-1"><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">hexo new page tags</span><br><span class="line"># 生成 /source/tags/index.md</span><br><span class="line"># 打开 index.md 修改 Front matter 为：</span><br><span class="line">---</span><br><span class="line">title: categories</span><br><span class="line">date: 2018-08-02 19:00:36</span><br><span class="line">type: tags</span><br><span class="line">---</span><br></pre></td></tr></table></figure></div><div class="tab-pane" id="the-second-solution-2"><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">hexo new page categories</span><br><span class="line"># 生成 /source/categories/index.md</span><br><span class="line"># 打开 index.md 修改 Front matter 为：</span><br><span class="line">---</span><br><span class="line">title: categories</span><br><span class="line">date: 2018-08-02 19:00:36</span><br><span class="line">type: categories</span><br><span class="line">---</span><br></pre></td></tr></table></figure></div></div></div>
+
+<p>同时，依据相同的方法可以新建一个新的标签<code>essays</code>。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo n page essays		  # 新建essays标签，生成 source\essays\index.md</span><br></pre></td></tr></table></figure>
+
+<h2 id="构建与部署"><a href="#构建与部署" class="headerlink" title="构建与部署"></a>构建与部署</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">hexo clean </span><br><span class="line"># 配置git</span><br><span class="line">git config --global user.name &quot;你的GitHub用户名&quot;</span><br><span class="line">git config --global user.email &quot;你的GitHub注册邮箱&quot;</span><br><span class="line"># 生成ssh密钥文件</span><br><span class="line">ssh-keygen -t rsa -C &quot;你的GitHub注册邮箱&quot;</span><br><span class="line"># 输出中将会显示出将生成的密钥保存到了某个文件当中</span><br><span class="line">cat /home/user/.ssh/id_rsa.pub</span><br><span class="line"># 复制输出结果到github--&gt; setting --&gt;key 页面 创建key</span><br><span class="line">ssh git@github.com </span><br><span class="line"># 验证配置是否成功</span><br></pre></td></tr></table></figure>
+
+<p>我们可以利用<code>GitHub</code>提供的<a target="_blank" rel="noopener" href="https://pages.github.com/">Pages服务</a>来托管我们的博客。在<code>GitHub Pages</code>的首页上就有一个教程指导我们如何托管自己的网站，当然第一步得在<code>GitHub</code>上注册一个属于自己的账号，登录成功之后才能进行后续的操作。</p>
+<ul>
+<li>根据自己的用户名创建一个仓库，仓库<mark class="label ">一定</mark>要取名为<code>用户名.github.io</code>。</li>
+<li>修改博客项目的配置文件<code>_config.yml</code>，配置使用GitHub来部署该博客项目。</li>
+</ul>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">git</span></span><br><span class="line">  <span class="attr">repo:</span> <span class="string">https://github.com/luseanevens/luseanevens.github.io.git</span></span><br><span class="line">  <span class="attr">branch:</span> <span class="string">master</span></span><br></pre></td></tr></table></figure>
+
+<p>之后以一下命令部署:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo clean&amp;&amp;hexo d -g</span><br></pre></td></tr></table></figure>
+
+<h3 id="Token"><a href="#Token" class="headerlink" title="Token"></a>Token</h3><p>在2021年8月，Github在代码部署端弃用了帐号、密码的验证方式，转而使用token，因此在输入密码时需要输入tocken，<code>github -- &gt; settings --&gt; Developer setting --&gt; personal access tokens --&gt; generate new token</code></p>
+<p>可以通过更改密码缓存时间以避免重复输入，但是<code>token</code>仍有必要保存在本地。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#默认缓存15分钟</span><br><span class="line">git config --global credential.helper cache</span><br><span class="line">#可以更改默认的密码缓存时限</span><br><span class="line">git config --global credential.helper &#x27;cache --timeout=3600&#x27;</span><br></pre></td></tr></table></figure>
+
+<h3 id="域名"><a href="#域名" class="headerlink" title="域名"></a>域名</h3><p>在初始版本中我使用了<code>Godady + Cloudflare</code>，目前阿里云提供了域名购买到解析的一套服务，对与无<code>WWW</code>域名，只需要在控制台配置A记录即可，写入<code>github</code>项目<code>ip</code>，并在本地项目<code>source</code>文件下添加<code>CNAME</code>文件保存域名，即可实现解析。</p>
+<p>首先打开阿里云域名<a target="_blank" rel="noopener" href="https://home.console.aliyun.com/home/dashboard/ProductAndService">控制台</a>，在域名列表中找到要使用的域名，点击解析，添加两个记录：</p>
+<div class="group-picture"><div class="group-picture-row"><div class="group-picture-column"><a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/luseanevens/picgo/main/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE">https://raw.githubusercontent.com/luseanevens/picgo/main/屏幕截图</a></div><div class="group-picture-column"><img src="https://raw.githubusercontent.com/luseanevens/picgo/main/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202023-02-10%20231938.png"></div></div></div>
+
+<p>其中记录值设置为自己的github主页地址。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">touch ~/blog/source/CNAME</span><br><span class="line">echo [url] &gt;&gt; ~/blog/source/CNAME</span><br></pre></td></tr></table></figure>
+
+<h3 id="同步"><a href="#同步" class="headerlink" title="同步"></a>同步</h3><p>使用<code>git</code>实现在不同计算机间的同步，首先在本地的<code>blog</code>文件夹初始化：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">cd ~/blog</span><br><span class="line"># 初始化仓库，创建.git 文件夹 </span><br><span class="line">git init</span><br><span class="line"># 首次提交，将本地仓库关联到远程仓库</span><br><span class="line">git remote add BlogBackup git@github.com:luseanevens/BlogBackup.git</span><br><span class="line"># 填写.gitignore忽略一些不需要进行管理的文件或文件夹 比如生成的缓存文件夹 public/</span><br><span class="line">touch .gitignore</span><br><span class="line"># 有时会自己配置好</span><br><span class="line"># 将本地所有文件添加到缓存区</span><br><span class="line">git add --all</span><br><span class="line"># 提交信息到缓存区</span><br><span class="line">git commit -m &quot;push all&quot;</span><br><span class="line"># 推送到本地仓库</span><br><span class="line">git push -u BlogBackup master</span><br><span class="line"># 推送到远程仓库</span><br></pre></td></tr></table></figure>
+
+<p>其他计算机拉取仓库：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">git clone -b master git@github.com:luseanevens/blogsource.git</span><br><span class="line"># 该命令会在你的当前文件夹下创建一个 &quot;repositoryname&quot; 目录 当然之后你可以自由的更改名字</span><br><span class="line">npm install</span><br><span class="line"># 由于之前配置 gitignore时保留了 &#x27;package.json&#x27;文件夹 使用该命令就会下载好所有依赖</span><br><span class="line">hexo clean&amp;&amp;hexo g&amp;&amp;hexo s </span><br><span class="line"># 修改完成之后，可以老三套</span><br><span class="line"># add 增加文件到暂存区</span><br><span class="line">git add --all</span><br><span class="line"># commit 提交文件到本地仓库</span><br><span class="line">git commit -m &#x27;submit&#x27;</span><br><span class="line"># push 推送到远程仓库</span><br><span class="line">git push </span><br></pre></td></tr></table></figure>
+
+<h2 id="图床"><a href="#图床" class="headerlink" title="图床"></a>图床</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">brew install node</span><br><span class="line">npm --version</span><br><span class="line">npm install -g picgo</span><br><span class="line">cd ~/.picgo/</span><br><span class="line">open config.json</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;picBed&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;uploader&quot;</span><span class="punctuation">:</span> <span class="string">&quot;smms&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;smms&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;token&quot;</span><span class="punctuation">:</span> <span class="string">&quot;*&quot;</span></span><br><span class="line">    <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;current&quot;</span><span class="punctuation">:</span> <span class="string">&quot;smms&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;transformer&quot;</span><span class="punctuation">:</span> <span class="string">&quot;path&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;proxy&quot;</span><span class="punctuation">:</span><span class="string">&quot;http://127.0.0.1:7890&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;picgoPlugins&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span><span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/">Hexo 官方文档</a></li>
+<li><a target="_blank" rel="noopener" href="https://theme-next.js.org/docs/getting-started/">next主题文档</a></li>
+<li><a target="_blank" rel="noopener" href="https://easyhexo.com/">Easy Hexo</a></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>cherium
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="http://cherium.top/2018/02/04/hexo/" title="建站记录">http://cherium.top/2018/02/04/hexo/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+            </div>
+            <div class="post-nav-item">
+                <a href="/2020/01/10/tensorflow/" rel="next" title="Tensorflow">
+                  Tensorflow <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 2020 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">cherium</span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>

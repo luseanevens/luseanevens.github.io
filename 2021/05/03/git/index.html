@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha256-Z1K5uhUaJXA7Ll0XrZ/0JhX4lAtZFpT6jkKrEDT0drU=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"cherium.top","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.14.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="因为在多台不同的电脑上协同办公的需求，我习惯将自己的项目代码部署到github以实现同步，简单的github desktop虽然也可以满足需求，却不能适应在树莓派下的纯命令行环境，很多时候会遗忘掉git    的操作顺序和机制，因此写此以做记录。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Git">
+<meta property="og:url" content="http://cherium.top/2021/05/03/git/index.html">
+<meta property="og:site_name" content="Ladder">
+<meta property="og:description" content="因为在多台不同的电脑上协同办公的需求，我习惯将自己的项目代码部署到github以实现同步，简单的github desktop虽然也可以满足需求，却不能适应在树莓派下的纯命令行环境，很多时候会遗忘掉git    的操作顺序和机制，因此写此以做记录。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-05-03T03:12:10.000Z">
+<meta property="article:modified_time" content="2023-05-12T08:41:35.382Z">
+<meta property="article:author" content="cherium">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://cherium.top/2021/05/03/git/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://cherium.top/2021/05/03/git/","path":"2021/05/03/git/","title":"Git"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Git | Ladder</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Ladder</p>
+      <i class="logo-line"></i>
+    </a>
+      <img class="custom-logo-image" src="/images/avatar.png" alt="Ladder">
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C"><span class="nav-number">1.</span> <span class="nav-text">基本操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E7%8E%AF%E5%A2%83"><span class="nav-number">1.1.</span> <span class="nav-text">配置环境</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E5%AF%86%E9%92%A5"><span class="nav-number">1.2.</span> <span class="nav-text">配置密钥</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%AC%E5%9C%B0%E4%BB%93%E5%BA%93"><span class="nav-number">1.3.</span> <span class="nav-text">本地仓库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8B%89%E5%8F%96%E4%BB%93%E5%BA%93"><span class="nav-number">1.4.</span> <span class="nav-text">拉取仓库</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Branch"><span class="nav-number">2.</span> <span class="nav-text">Branch</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Github-CLI"><span class="nav-number">3.</span> <span class="nav-text">Github CLI</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="cherium"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">cherium</p>
+  <div class="site-description" itemprop="description">莫听穿林打叶声，何妨吟啸且徐行</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">26</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="cc-license animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://cherium.top/2021/05/03/git/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="cherium">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ladder">
+      <meta itemprop="description" content="莫听穿林打叶声，何妨吟啸且徐行">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Git | Ladder">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Git
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-05-03 11:12:10" itemprop="dateCreated datePublished" datetime="2021-05-03T11:12:10+08:00">2021-05-03</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-05-12 16:41:35" itemprop="dateModified" datetime="2023-05-12T16:41:35+08:00">2023-05-12</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/git/" itemprop="url" rel="index"><span itemprop="name">git</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>因为在多台不同的电脑上协同办公的需求，我习惯将自己的项目代码部署到<code>github</code>以实现同步，简单的<code>github desktop</code>虽然也可以满足需求，却不能适应在树莓派下的纯命令行环境，很多时候会遗忘掉<code>git</code>    的操作顺序和机制，因此写此以做记录。</p>
+<span id="more"></span>
+
+<h2 id="基本操作"><a href="#基本操作" class="headerlink" title="基本操作"></a>基本操作</h2><h3 id="配置环境"><a href="#配置环境" class="headerlink" title="配置环境"></a>配置环境</h3><p>环境配置命令： </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name &quot;username&quot;</span><br><span class="line">git config --global user.email &quot;email&quot;</span><br><span class="line"># 这样可以省去登录有权限的远程仓库时的输入过程</span><br><span class="line"># 当然也可以查看设置的变量</span><br><span class="line">git config --get user.name</span><br><span class="line">git config --get user.email</span><br></pre></td></tr></table></figure>
+
+<h3 id="配置密钥"><a href="#配置密钥" class="headerlink" title="配置密钥"></a>配置密钥</h3><p>使用<code>github</code>需要配置<code>SSH</code>密钥：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -C &quot;cherium@icloud.com&quot;</span><br></pre></td></tr></table></figure>
+
+<p>在不设定<code>-f</code>参数时，会默认在<code>~/.ssh/</code>下生成私钥<code>id_rsa</code>和公钥<code>id_rsa.pub</code>其中公钥需要添加到<code>github</code>上，作为你拥有这台计算机的标记。</p>
+<h3 id="本地仓库"><a href="#本地仓库" class="headerlink" title="本地仓库"></a>本地仓库</h3><p>以托管本地博客源文件为例子：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">cd ~/blog</span><br><span class="line"># 初始化仓库，创建.git 文件夹 </span><br><span class="line">git init</span><br><span class="line"># 首次提交，将本地仓库关联到远程仓库</span><br><span class="line">git remote add BlogBackup git@github.com:luseanevens/BlogBackup.git</span><br><span class="line"># 填写.gitignore忽略一些不需要进行管理的文件或文件夹 比如生成的缓存文件夹 public/</span><br><span class="line"># 将本地所有文件添加到缓存区</span><br><span class="line">git add --all</span><br><span class="line"># 提交信息到缓存区</span><br><span class="line">git commit -m &quot;push all&quot;</span><br><span class="line"># 推送到本地仓库</span><br><span class="line">git push -u BlogBackup master</span><br><span class="line"># 推送到远程仓库</span><br></pre></td></tr></table></figure>
+
+<p>here is a example of <code>.gitignore</code> file, just type the name you don’t want to sync and Enter.</p>
+<blockquote>
+<p>.DS_Store<br>Thumbs.db<br>db.json<br><em>.log<br>node_modules&#x2F;<br>public&#x2F;<br>.deploy</em>&#x2F;<br>_multiconfig.yml</p>
+</blockquote>
+<h3 id="拉取仓库"><a href="#拉取仓库" class="headerlink" title="拉取仓库"></a>拉取仓库</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">git clone -b master &lt;ssh -url&gt;</span><br><span class="line"># clone master branch</span><br><span class="line"># 该命令会在你的当前文件夹下创建一个 &lt;repositoryname&gt; 目录 当然之后你可以自由的更改名字</span><br><span class="line">npm install</span><br><span class="line"># 由于之前配置 gitignore时保留了 &#x27;package.json&#x27;文件夹 使用该命令就会下载好所有依赖</span><br><span class="line">hexo clean&amp;&amp;hexo g&amp;&amp;hexo s </span><br><span class="line"># 修改完成之后，可以老三套</span><br><span class="line"># add 增加文件到暂存区</span><br><span class="line">git add --all</span><br><span class="line"># commit 提交文件到本地仓库</span><br><span class="line">git commit -m &#x27;submit&#x27;</span><br><span class="line"># push 推送到远程仓库</span><br><span class="line">git push </span><br></pre></td></tr></table></figure>
+
+<h2 id="Branch"><a href="#Branch" class="headerlink" title="Branch"></a>Branch</h2><p>After creating a repo, you can use <code>branch</code> to work with other foes, here are steps:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">mkdir my-repo</span><br><span class="line">cd my-repo</span><br><span class="line">git init </span><br><span class="line">git remote add &lt;repo-name&gt; &lt;ssh-url&gt;</span><br><span class="line"># connect to remote repo</span><br><span class="line">git remote -v</span><br><span class="line"># This will list all the remote repositories associated with your local Git repository. </span><br><span class="line">echo &#x27;hello world&#x27; &gt;&gt; myfile.txt</span><br><span class="line">git add myfile.txt</span><br><span class="line">git commit -m &#x27;main-file&#x27;</span><br><span class="line"># add change file and commit it</span><br><span class="line">git branch branch-1</span><br><span class="line"># add new branch</span><br><span class="line">git checkout branch-1</span><br><span class="line"># change work branch</span><br><span class="line">echo &#x27;branch-1 test&#x27; &gt;&gt; myfile.txt</span><br><span class="line"># add changes, not change in main branch</span><br><span class="line">git add myfile.txt</span><br><span class="line">git commit -m &#x27;branch-file&#x27;</span><br><span class="line"># push branch main and branch-1</span><br><span class="line">git push --set-upstream test main</span><br><span class="line">git push --set-upstream test branch-1</span><br></pre></td></tr></table></figure>
+
+<p>By now you can see there are two branch in github website and two branch are different.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">git checkout main</span><br><span class="line">git merge branch-1</span><br><span class="line"># now myfile.txt is same with branch-1 </span><br><span class="line">git branch</span><br><span class="line"># show all branchs </span><br><span class="line">git checkout branch-1</span><br><span class="line">cat myfile.txt</span><br><span class="line"># branch not change</span><br><span class="line">git branch -d branch-1</span><br><span class="line"># delete</span><br></pre></td></tr></table></figure>
+
+<p>his will delete the <code>branch-1</code> branch from your local repository. If the branch has not been fully merged yet, you will see a warning message. If you are sure you want to delete the branch, you can use the <code>-D</code> flag instead of <code>-d</code> to force the deletion:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch -D branch-1</span><br></pre></td></tr></table></figure>
+
+<p>To delete remote branch:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">git branch -r</span><br><span class="line"># list remote branch </span><br><span class="line">git push &lt;repo-name&gt; -delete branch-1</span><br><span class="line"># remove remote branch</span><br><span class="line">git remote -r</span><br><span class="line"># check</span><br></pre></td></tr></table></figure>
+
+<p>To delete remote reop:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git remote rm &lt;repo-name&gt;</span><br><span class="line">git remote -v</span><br><span class="line"># check remote </span><br></pre></td></tr></table></figure>
+
+<h2 id="Github-CLI"><a href="#Github-CLI" class="headerlink" title="Github CLI"></a>Github CLI</h2><p>Install with home-brew:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">brew install gh</span><br><span class="line"># log-in</span><br><span class="line">gh auth login</span><br><span class="line"># you can just open website to login or use token.</span><br><span class="line"></span><br><span class="line"># mk remote repository</span><br><span class="line">gh repo create Numerical-Analysis --private</span><br><span class="line"># --piblic and --internal avaliable</span><br><span class="line">gh repo create Numerical-Analysis --push</span><br><span class="line"># auto-push to new repo.</span><br><span class="line"></span><br><span class="line">git remote add origin https://github.com/luseanevens/my-remote-repo.git</span><br><span class="line"># origin is alias of this repo</span><br><span class="line"></span><br><span class="line">git add --all</span><br><span class="line">git commit -m &quot;Initialize repository&quot;</span><br><span class="line">git push --set-upstream origin main</span><br><span class="line"># set local main as remote main</span><br><span class="line"></span><br><span class="line"># list all your repo</span><br><span class="line">gh repo list</span><br><span class="line"></span><br><span class="line">gh repo view Numerical-Analysis --json sshUrl -q .sshUrl</span><br><span class="line"># check remote repository&#x27;s ssh url</span><br><span class="line"></span><br><span class="line">gh repo list --json sshUrl | jq &#x27;.[] | .sshUrl&#x27;</span><br><span class="line"># list all ssh url</span><br><span class="line"># jq is a json cli tool can install with scoop in windows</span><br></pre></td></tr></table></figure>
+
+
+
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>cherium
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="http://cherium.top/2021/05/03/git/" title="Git">http://cherium.top/2021/05/03/git/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2020/12/30/pytorch-lr/" rel="prev" title="pytorch-lr">
+                  <i class="fa fa-chevron-left"></i> pytorch-lr
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2022/02/04/kali/" rel="next" title="将kali作为日用操作系统">
+                  将kali作为日用操作系统 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 2020 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">cherium</span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>

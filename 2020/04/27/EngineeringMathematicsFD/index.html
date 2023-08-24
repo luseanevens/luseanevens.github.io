@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha256-Z1K5uhUaJXA7Ll0XrZ/0JhX4lAtZFpT6jkKrEDT0drU=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"cherium.top","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.14.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="工程数学基础这篇博文主要记录在学习过程中被老师一笔带过但却让我想了很久的问题。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="工程数学基础">
+<meta property="og:url" content="http://cherium.top/2020/04/27/EngineeringMathematicsFD/index.html">
+<meta property="og:site_name" content="Ladder">
+<meta property="og:description" content="工程数学基础这篇博文主要记录在学习过程中被老师一笔带过但却让我想了很久的问题。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1geo93lmnsvj30v20u0n2e.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1ghdscc7nzsj30ec05i0sp.jpg">
+<meta property="article:published_time" content="2020-04-27T02:48:32.000Z">
+<meta property="article:modified_time" content="2023-02-10T15:41:38.874Z">
+<meta property="article:author" content="cherium">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1geo93lmnsvj30v20u0n2e.jpg">
+
+
+<link rel="canonical" href="http://cherium.top/2020/04/27/EngineeringMathematicsFD/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://cherium.top/2020/04/27/EngineeringMathematicsFD/","path":"2020/04/27/EngineeringMathematicsFD/","title":"工程数学基础"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>工程数学基础 | Ladder</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Ladder</p>
+      <i class="logo-line"></i>
+    </a>
+      <img class="custom-logo-image" src="/images/avatar.png" alt="Ladder">
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B7%A5%E7%A8%8B%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80"><span class="nav-number">1.</span> <span class="nav-text">工程数学基础</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9C%8B%E6%87%82%E7%9F%A9%E9%98%B5%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="nav-number">1.1.</span> <span class="nav-text">看懂矩阵表达式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9F%A9%E9%98%B5%E3%80%81%E5%90%91%E9%87%8F%E7%9A%84%E6%B1%82%E5%AF%BC"><span class="nav-number">1.2.</span> <span class="nav-text">矩阵、向量的求导</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%80%E5%B0%8F%E4%BA%8C%E4%B9%98%E6%B3%95"><span class="nav-number">1.3.</span> <span class="nav-text">最小二乘法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%AB%98%E6%AC%A1%E5%A4%9A%E9%A1%B9%E5%BC%8F%E5%88%86%E8%A7%A3"><span class="nav-number">1.4.</span> <span class="nav-text">高次多项式分解</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#The-Rational-Zeros-Theorem"><span class="nav-number">1.4.1.</span> <span class="nav-text">The Rational Zeros Theorem</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9B%A0%E5%BC%8F%E5%AE%9A%E7%90%86"><span class="nav-number">1.4.1.1.</span> <span class="nav-text">因式定理</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%AD%A3%E6%80%81%E5%88%86%E5%B8%83"><span class="nav-number">1.5.</span> <span class="nav-text">正态分布</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%8D%E5%8F%98%E5%87%BD%E6%95%B0"><span class="nav-number">1.6.</span> <span class="nav-text">复变函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AC%A7%E6%8B%89%E5%85%AC%E5%BC%8F%E5%8F%8A%E8%AF%81%E6%98%8E"><span class="nav-number">1.6.1.</span> <span class="nav-text">欧拉公式及证明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%8D%E6%95%B0%E7%9A%84%E8%A1%A8%E8%BE%BE%E6%96%B9%E5%BC%8F%E4%B8%8E%E8%AE%A1%E7%AE%97%E6%80%A7%E8%B4%A8"><span class="nav-number">1.6.2.</span> <span class="nav-text">复数的表达方式与计算性质</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="cherium"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">cherium</p>
+  <div class="site-description" itemprop="description">莫听穿林打叶声，何妨吟啸且徐行</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">26</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="cc-license animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://cherium.top/2020/04/27/EngineeringMathematicsFD/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="cherium">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ladder">
+      <meta itemprop="description" content="莫听穿林打叶声，何妨吟啸且徐行">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="工程数学基础 | Ladder">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          工程数学基础
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-04-27 10:48:32" itemprop="dateCreated datePublished" datetime="2020-04-27T10:48:32+08:00">2020-04-27</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-02-10 23:41:38" itemprop="dateModified" datetime="2023-02-10T23:41:38+08:00">2023-02-10</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/math/" itemprop="url" rel="index"><span itemprop="name">math</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="工程数学基础"><a href="#工程数学基础" class="headerlink" title="工程数学基础"></a>工程数学基础</h1><p>这篇博文主要记录在学习过程中被老师一笔带过但却让我想了很久的问题。</p>
+<span id="more"></span>
+
+<h2 id="看懂矩阵表达式"><a href="#看懂矩阵表达式" class="headerlink" title="看懂矩阵表达式"></a>看懂矩阵表达式</h2><ul>
+<li>一般规定$\boldsymbol A$ （粗体大些字母）为矩阵，$\boldsymbol x$ （粗体小写字母）为向量。</li>
+</ul>
+<p>高中时我们认识的大多为一维的公式，形式如下：<br>$$<br>G(x)&#x3D;ax+by+c<br>$$<br>其表示在二维空间中的一条线，将平面划分成了两部分，以线性代数的角度思考，其由特征向量：<br>$$<br>\boldsymbol x&#x3D;[x\quad y]<br>$$<br>和特征向量权重：<br>$$<br>\boldsymbol \omega &#x3D;[a\quad b]<br>$$<br>与参数<code>c</code>组成。在飞行力学等学科涉及很多高维方程，此时将这样的一阶方程表示为：<br>$$<br>G(x)&#x3D;\boldsymbol w^T\boldsymbol x+\omega_0<br>$$<br>其中特征向量拓展到n个变量：<br>$$<br>\boldsymbol x&#x3D;[x_1,x_2,….,x_n]<br>$$<br>对应的也就有n个参数（变量的系数）:<br>$$<br>\boldsymbol\omega&#x3D;[\omega_1,\omega_2,….\omega_n]<br>$$<br>一般约定，粗体小写字母为列向量，转置之后为行向量，转变为对应相乘再相加的形式，也就是在$n$维空间中的一条线。</p>
+<h2 id="矩阵、向量的求导"><a href="#矩阵、向量的求导" class="headerlink" title="矩阵、向量的求导"></a>矩阵、向量的求导</h2><ul>
+<li><font color=red>对向量求导的公式</font>，$\frac{\partial J}{\partial \alpha}$,$A$为矩阵，$y、x$为列向量。</li>
+</ul>
+<p>$$<br>\bigtriangledown_x(x^TAx)&#x3D;(A+A^T)x\\<br>\bigtriangledown_x(y^Tx)&#x3D;\bigtriangledown_x(x^Ty)&#x3D;y<br>$$</p>
+<h2 id="最小二乘法"><a href="#最小二乘法" class="headerlink" title="最小二乘法"></a>最小二乘法</h2><p>最小二乘法是用于求解超定方程的解法，对于$\boldsymbol A\boldsymbol x&#x3D;\boldsymbol b$的线性方程组，若$\boldsymbol A$是满秩的（即各行各列不线性相关），且方程个数大于未知数个数（样本数大于维度），方程由于限制太过严格而导致解不存在。此时一般使用最小二乘法求取一个最接近的解。</p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1geo93lmnsvj30v20u0n2e.jpg" alt="image-20200511092515693"></p>
+<p>有一系列离散的点，来拟合一条直线。</p>
+<ul>
+<li><p>$||||_2$表示l-2范数的平方，代表欧式距离的平方。</p>
+</li>
+<li><p>$||||_1$是l-1范数，即向量内元素的绝对值相加。</p>
+</li>
+<li><p>标量的转置还是他本身</p>
+</li>
+<li><p>$Y\alpha&#x3D;b$</p>
+</li>
+<li><p>求$\min_{\alpha}J&#x3D;||Y\alpha-b||^2$时，先求$\frac{\partial J}{\partial \alpha}&#x3D;0$带入以求得极小值。</p>
+</li>
+</ul>
+<p>LMSE算法中：$Y\alpha &#x3D;b$,$N&gt;d$时是一个超定方程（方程的个数大于为未知量的个数），使用最小二乘法求$min||Y\alpha -b||_2^2$。<br>$$<br>||Y\alpha-b||^2&#x3D;(Y\alpha-b)^T(Y\alpha-b)\\<br>(\alpha^TY^T-b^T)(Y\alpha-b)&#x3D;\alpha^TY^TY\alpha-\alpha^TY^Tb-(b^TY\alpha)^T+b^Tb\\<br>b^TY\alpha为标量\\<br>&#x3D;\alpha^TY^TY\alpha-2\alpha^TY^Tb+b^Tb\\<br>令 \frac{\partial J}{\partial \alpha}&#x3D;2Y^TY\alpha-2Y^Tb&#x3D;0\\<br>Y^T(Y\alpha-b)&#x3D;0\\<br>\alpha&#x3D;(Y^TY)^{-1}Y^Tb<br>$$<br>所以，$Y\alpha&#x3D;b$的最小二乘解为$\to$$\alpha&#x3D;(Y^TY)^{-1}Y^Tb&#x3D;Y^+b$</p>
+<h2 id="高次多项式分解"><a href="#高次多项式分解" class="headerlink" title="高次多项式分解"></a>高次多项式分解</h2><p>分解一元高次方程对于考研来讲是常考的一种化简问题，但是从工程的角度讲其实很难看到这样优雅的方程。比如：$2x^5-10x+5&#x3D;0$无法得出带数解，意味着这个方程无法用初等方法的表示因式分解。但是使用**<a target="_blank" rel="noopener" href="https://www.sparknotes.com/math/algebra2/polynomials/section4/">The Rational Zeros Theorem</a><strong>和</strong><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=VLDGD05vFEQ">综合除法</a>**可以解决考研数学中的大部分问题。</p>
+<h3 id="The-Rational-Zeros-Theorem"><a href="#The-Rational-Zeros-Theorem" class="headerlink" title="The Rational Zeros Theorem"></a>The Rational Zeros Theorem</h3><h4 id="因式定理"><a href="#因式定理" class="headerlink" title="因式定理"></a>因式定理</h4><p>若$(x-a)$是$f(x)$的一个因式，则$f(a)&#x3D;0$.</p>
+<p>对于一般的方程而言，可分解为：$f(x)&#x3D;(x-a)g(x)+R$，而$R&#x3D;0$时就是上述的情况。那么问题就转换为了如何确定$a$。</p>
+<p><strong>The Rational Zeros Theorem</strong>证明，对于一个各项系数均为非0整数的一元高次方程：</p>
+<p>令P为常数项系数的因式，Q为最高次项系数的因式；</p>
+<p>则认为a的<font color=red>可能值</font>存在于$\frac{P}{Q}$中：<br>$$<br>f(x)&#x3D;2x^4+x^3-19x^2-9x+9\\<br>\frac{P}{Q}&#x3D;\pm\frac{1}{1},\pm\frac{3}{1},\pm\frac{9}{1}….\\<br>if \sum coefficients &#x3D; 0,a&#x3D;1; can; be ; used.\\<br>if \sum Odd; coefficient&#x3D;\sum<br>Even; coefficient,a&#x3D;-1; can; be ; used.\\<br>so,a&#x3D;-1\\<br>f(x)&#x3D;(x+1)g(x)\\<br>$$<br>由综合除法可知：</p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ghdscc7nzsj30ec05i0sp.jpg" alt="image-20200803181040382"><br>$$<br>f(x)&#x3D;(x+1)(2x^3-x^2-18x+9)<br>$$<br>同理继续分解：<br>$$<br>f(x)&#x3D;(x+1)(x+3)(x-3)(2x-1)<br>$$<br>关于综合除法，参考以下视频：</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/VLDGD05vFEQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<p><strong>The Rational Zeros Theorem</strong>其实就是十字相乘的一种拓展，形如$(x+a)(x+b)$，则常数项就是$ab$。而对于多项式而言，常数项无非就是$abcdef$，而拆出它的因式自然也就可能是$x+a$中的a了。</p>
+<h2 id="正态分布"><a href="#正态分布" class="headerlink" title="正态分布"></a>正态分布</h2><ul>
+<li><p>理解与应用</p>
+</li>
+<li><p>证明：正态分布在$[-\infty,\infty]$上的积分为1。<br>$$<br>G(x)&#x3D;\int_{-\infty}^\infty\frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{(x-\mu)^2}{2\sigma^2}}<br>$$<br>其中$\mu$令其在$x$轴上平移，而$\sigma$为常数，所以问题等同于求：<br>$$<br>F(x)&#x3D;\int_{-\infty}^{\infty}e^{-mx^2}dx,m&#x3D;\frac{1}{2\sigma^2}\\<br>F&#x3D;\int_{-\infty}^{\infty}e^{-mx^2}dx,F&#x3D;\int_{-\infty}^{\infty}e^{-my^2}dy;\\<br>F^2&#x3D;\iint_De^{m(x^2+y^2)}dxdy,D&#x3D;\R^2\\<br>令x&#x3D;r cosx,y&#x3D;r sinx\\<br>F^2&#x3D;\int_0^{2\pi}\int_0^{+\infty}e^{-m\rho^2}\rho d\rho d\theta&#x3D;\frac{\pi}{m}<br>$$</p>
+</li>
+</ul>
+<p>回带之后得证。</p>
+<h2 id="复变函数"><a href="#复变函数" class="headerlink" title="复变函数"></a>复变函数</h2><h3 id="欧拉公式及证明"><a href="#欧拉公式及证明" class="headerlink" title="欧拉公式及证明"></a>欧拉公式及证明</h3><p>$$<br>e^{i\theta} &#x3D; cos\theta + j sin\theta (i&#x3D;\sqrt{-1})\<br>assume.\quad f(\theta) &#x3D; \frac{e^{i\theta}}{cos\theta + isin\theta}\<br>f’(\theta) &#x3D; \frac{ie^{i\theta}(cos\theta+isin\theta)-e^{i\theta}(-sin\theta+icos\theta)}{(cos\theta+i sin\theta)^2}\<br>&#x3D; 0\<br>f’(\theta)&#x3D;0 \quad means; that; f(\theta)&#x3D;Constant\<br>let;\theta&#x3D;0;f(0)&#x3D;1\<br>therefore; e^{i\theta}&#x3D;cos\theta - sin\theta<br>$$</p>
+<h3 id="复数的表达方式与计算性质"><a href="#复数的表达方式与计算性质" class="headerlink" title="复数的表达方式与计算性质"></a>复数的表达方式与计算性质</h3><ul>
+<li>$e^{i\theta}&#x3D;cos\theta + isin\theta$</li>
+<li>$z &#x3D; a + bi &#x3D; rcos\theta+r\sin\theta i&#x3D;re^{i\theta}$</li>
+<li>$|z|&#x3D;|a+bi|&#x3D;|r||e^{i\theta}|&#x3D;\sqrt{a^2+b^2}&#x3D;|r|&#x3D;r$</li>
+<li>$\angle z &#x3D; arctan; b&#x2F;a&#x3D;\theta$</li>
+<li>$j &#x3D; e^{\frac{\pi}{2}i}$</li>
+<li>$1 &#x3D; e^{i\theta}\times e^{-i\theta}$</li>
+<li>$z^* &#x3D; a-bi &#x3D; e^{i-\theta}$</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>cherium
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="http://cherium.top/2020/04/27/EngineeringMathematicsFD/" title="工程数学基础">http://cherium.top/2020/04/27/EngineeringMathematicsFD/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2020/04/22/pr/" rel="prev" title="模式识别笔记">
+                  <i class="fa fa-chevron-left"></i> 模式识别笔记
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2020/08/05/computelimit/" rel="next" title="极限的计算">
+                  极限的计算 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 2020 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">cherium</span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>

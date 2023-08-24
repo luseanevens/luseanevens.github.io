@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha256-Z1K5uhUaJXA7Ll0XrZ/0JhX4lAtZFpT6jkKrEDT0drU=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"cherium.top","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.14.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="Dataset You Need PreviousThe underscores in Python1# Different between _xx xx_ __xx __xx__   In Python interpreter, there are many applications base on the character ‘underscore’, just like using in I">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Data PreProcessing Of Deep Learning">
+<meta property="og:url" content="http://cherium.top/2022/03/24/datapreprocessing/index.html">
+<meta property="og:site_name" content="Ladder">
+<meta property="og:description" content="Dataset You Need PreviousThe underscores in Python1# Different between _xx xx_ __xx __xx__   In Python interpreter, there are many applications base on the character ‘underscore’, just like using in I">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2022/07/13/FtfB5618pCMSYPm.png">
+<meta property="og:image" content="https://s2.loli.net/2022/07/13/NYpFVCW6a2OwDSr.png">
+<meta property="og:image" content="https://s2.loli.net/2022/07/13/WHnprilSxF9tw3D.png">
+<meta property="og:image" content="https://s2.loli.net/2022/07/02/O5dDZUN3Y7coTPr.png">
+<meta property="article:published_time" content="2022-03-24T12:10:20.000Z">
+<meta property="article:modified_time" content="2023-02-10T15:41:38.875Z">
+<meta property="article:author" content="cherium">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2022/07/13/FtfB5618pCMSYPm.png">
+
+
+<link rel="canonical" href="http://cherium.top/2022/03/24/datapreprocessing/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://cherium.top/2022/03/24/datapreprocessing/","path":"2022/03/24/datapreprocessing/","title":"Data PreProcessing Of Deep Learning"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Data PreProcessing Of Deep Learning | Ladder</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Ladder</p>
+      <i class="logo-line"></i>
+    </a>
+      <img class="custom-logo-image" src="/images/avatar.png" alt="Ladder">
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Dataset-You-Need-Previous"><span class="nav-number">1.</span> <span class="nav-text">Dataset You Need Previous</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#The-underscores-in-Python"><span class="nav-number">1.1.</span> <span class="nav-text">The underscores in Python</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Predefined-Function"><span class="nav-number">1.1.1.</span> <span class="nav-text">Predefined Function</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Inheritance"><span class="nav-number">1.1.2.</span> <span class="nav-text">Inheritance</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Dataset"><span class="nav-number">1.2.</span> <span class="nav-text">Dataset</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Practise"><span class="nav-number">1.3.</span> <span class="nav-text">Practise</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#LabelMe"><span class="nav-number">2.</span> <span class="nav-text">LabelMe</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="cherium"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">cherium</p>
+  <div class="site-description" itemprop="description">莫听穿林打叶声，何妨吟啸且徐行</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">26</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="cc-license animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://cherium.top/2022/03/24/datapreprocessing/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="cherium">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ladder">
+      <meta itemprop="description" content="莫听穿林打叶声，何妨吟啸且徐行">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Data PreProcessing Of Deep Learning | Ladder">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Data PreProcessing Of Deep Learning
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-03-24 20:10:20" itemprop="dateCreated datePublished" datetime="2022-03-24T20:10:20+08:00">2022-03-24</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-02-10 23:41:38" itemprop="dateModified" datetime="2023-02-10T23:41:38+08:00">2023-02-10</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/python/" itemprop="url" rel="index"><span itemprop="name">python</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="Dataset-You-Need-Previous"><a href="#Dataset-You-Need-Previous" class="headerlink" title="Dataset You Need Previous"></a>Dataset You Need Previous</h1><h2 id="The-underscores-in-Python"><a href="#The-underscores-in-Python" class="headerlink" title="The underscores in Python"></a>The underscores in Python</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Different between _xx xx_ __xx __xx__ </span></span><br></pre></td></tr></table></figure>
+
+<p>In Python interpreter, there are many applications base on the character ‘underscore’, just like using in Ipython, a python interactive command line tool, as a ‘ans’ character like in calculators.</p>
+<span id="more"></span>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">ipython</span><br><span class="line">&gt; 1+1 =</span><br><span class="line">&gt; 2</span><br><span class="line">&gt; _ + 1 = </span><br><span class="line">&gt; 3</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://s2.loli.net/2022/07/13/FtfB5618pCMSYPm.png" alt="image-20220701200359673"></p>
+<p>It also be used as a variable in Loop like below birthday and it will output number 0 - 9.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">10</span>):</span><br><span class="line">  <span class="built_in">print</span>(_,end = <span class="string">&#x27;-&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<img src="https://s2.loli.net/2022/07/13/NYpFVCW6a2OwDSr.png" alt="image-20220701212920923" style="zoom:50%;" />
+
+<h3 id="Predefined-Function"><a href="#Predefined-Function" class="headerlink" title="Predefined Function"></a>Predefined Function</h3><p>The first time you see <code>__xx__</code> in Python must in Object-Oriented programming part, you used <code>__init__</code> predefined function to create class, just like this:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Password</span>:</span><br><span class="line">  <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self,name,birthday</span>):</span><br><span class="line">    self.name = name</span><br><span class="line">    self.birthday = birthday</span><br><span class="line">  <span class="keyword">def</span> <span class="title function_">make_password</span>(<span class="params">self</span>):</span><br><span class="line">    <span class="keyword">return</span> self.name +<span class="string">&#x27;class&#x27;</span>+ <span class="built_in">str</span>(self.birthday)</span><br><span class="line">      </span><br></pre></td></tr></table></figure>
+
+<p>This class define the attributes name and birthday, and a method can combine the name and the birthday to a new password, you can edit different algorithm to make different passwords.</p>
+<p>In the book <code>PYTHON CRASH COUSE</code>, the author said:</p>
+<blockquote>
+<p>“A function that’s part of a class is a method. Everything you learned about functions applies to methods as well; the only practical difference for now is the way we’ll call methods. The <code>__init__()</code> method at ➌ is a <strong>special method</strong> that Python runs automatically whenever we create a new instance based on the class. <strong>This method has two leading underscores and two trailing underscores, a convention that helps prevent Python’s default method names from conflicting with your method names.</strong> Make sure to use two underscores on each side of <code>__init__()</code>. If you use just one on each side, the method won’t be called automatically when you use your class, which can result in errors that are difficult to identify.</p>
+<p>We define the <code>__init__()</code> method to have three parameters: self, name, and birthday. The self parameter is required in the method definition, and it must come first before the other parameters. It must be included in the definition because when Python calls this method later (to create an instance of Password), the method call will automatically pass the ‘self’ argument. Every method call associated with an instance automatically passes self, which is a reference to the instance itself; it gives the individual instance access to the attributes and methods in the class. When we make an instance of Password, Python will call the <code>__init__()</code> method from the Password class. We’ll pass Password() a name and an birthday as arguments; self is passed automatically, so we don’t need to pass it. Whenever we want to make an instance from the class, we’ll provide values for only the last two parameters, name and age.”</p>
+<p>Excerpts from: Eric Matthes. “Python Crash Course: A Hands-On, Project-Based Introduction to Programming, 2nd Edition。</p>
+</blockquote>
+<p>So, if we want to create an instance of a class, we don’t need to pass the ‘self’ argument, but others.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">my_password = Password(<span class="string">&#x27;zhao&#x27;</span>,<span class="number">1999</span>)</span><br><span class="line"><span class="built_in">print</span>(my_birthday.birthday)</span><br><span class="line"><span class="built_in">print</span>(my_birthday.name)</span><br><span class="line"><span class="built_in">print</span>(my_birthday.make_password())</span><br></pre></td></tr></table></figure>
+
+<h3 id="Inheritance"><a href="#Inheritance" class="headerlink" title="Inheritance"></a>Inheritance</h3><p>We all know how to make child class from parent class by using inheritance, for most cases, there’re three step:</p>
+<ol>
+<li>child class use <code>__init__()</code>predefined function to take in the information required to make a instance, just like their parent class make a instance, this function handle the job pass the argument.</li>
+<li>child class use <code>super()</code> class, a python predefined class to inherit attributes and methods from parent class, and <code>super()</code>just a instance made by <code>super</code>, the argument is dynamic, for most situations, we won’t care about it. Use<code>super().__init__(self,arg...)</code>in <code>__init()__</code> function, you will inherit all attributes you want to child class, the reason we name <code>super</code> is we used call parent class as super class and child class as sub class.</li>
+<li>Specialize: most times you need to add or remove some attributes or override some methods, than you can code as you want.</li>
+</ol>
+<img src="https://s2.loli.net/2022/07/13/WHnprilSxF9tw3D.png" alt="image-20220701220927216" style="zoom: 67%;" />
+
+<p>The code above is an example how to inherit and chose attributes you need and override method, and THAT’S WHAT WE DO MOST with Dataset.</p>
+<h2 id="Dataset"><a href="#Dataset" class="headerlink" title="Dataset"></a>Dataset</h2><p>In pytorch we have two ways to tranmit data to network, and we use Dataset class now for efficiency.</p>
+<p>The basic idea is we need an attribute to save all image path, or read all image index into a list and we need a method to get tensor with index (this index maybe generated by a iterator or loop), besides, we need a method to know how many data we pass.</p>
+<p>To solve this questions, we should know:</p>
+<ol>
+<li>how to read data, correspond with the format of origin data.</li>
+<li>how to design <code>__getitem__()</code> to read data.</li>
+<li>how to design <code>__len__()</code> to calculate length.</li>
+</ol>
+<p>There is an example to get jpeg picture from fold.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> torch.utils <span class="keyword">import</span> data</span><br><span class="line"><span class="keyword">import</span> glob</span><br><span class="line">dirs = glob.glob(<span class="string">r&#x27;~/Desktop/*.jpg&#x27;</span>)</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">MyDataset</span>(data.Dataset):</span><br><span class="line">     <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self,root</span>):</span><br><span class="line">         <span class="built_in">super</span>().__init__()</span><br><span class="line">        <span class="comment"># we don&#x27;t inherit any attributes</span></span><br><span class="line">         self.root = root</span><br><span class="line">     <span class="keyword">def</span> <span class="title function_">__getitems__</span>(<span class="params">self,index</span>):</span><br><span class="line">         img_path = self.root[index]</span><br><span class="line">         <span class="keyword">return</span> img_path</span><br><span class="line">     <span class="keyword">def</span> <span class="title function_">__len__</span>(<span class="params">self</span>):</span><br><span class="line">         <span class="keyword">return</span> <span class="built_in">len</span>(self.root)</span><br><span class="line">      </span><br><span class="line">my_data = MyDataset(dirs)</span><br><span class="line"><span class="comment"># instance </span></span><br><span class="line">img_batch = data.Dataloader(my_data,batch_size=<span class="number">4</span>,shuffle=<span class="literal">True</span>)</span><br><span class="line"><span class="built_in">next</span>(<span class="built_in">iter</span>(img_batch))</span><br></pre></td></tr></table></figure>
+
+<p> Now, you can see we get the batch of images.</p>
+<h2 id="Practise"><a href="#Practise" class="headerlink" title="Practise"></a>Practise</h2><p>Now, i get a dataset folder like this:</p>
+<blockquote>
+<p>cloud12.png</p>
+<p>sun177.png</p>
+</blockquote>
+<p>and i know i have to do some work to split labels from image files’ name, transfer image data to Tensor, split train data and test data,</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># get labels and transfer it to numbers</span></span><br><span class="line"><span class="comment"># for some datasets with low classes, you can use re</span></span><br><span class="line"><span class="comment"># but you should find a way to adapt more classes</span></span><br><span class="line"><span class="keyword">import</span> glob</span><br><span class="line">root = glob.glob(<span class="string">r&#x27;./dataset/*.png&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># &gt; [&#x27;./dataset/sun22.png&#x27;, &#x27;./dataset/cloud19.png&#x27;]</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">DirDataset</span>(data.Dataset):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self,root</span>):</span><br><span class="line">       <span class="built_in">super</span>().__init__()</span><br><span class="line">       self.root = root</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__getitem__</span>(<span class="params">self,index</span>):</span><br><span class="line">       img_path = self.root[index]</span><br><span class="line">       <span class="keyword">return</span> img_path</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__len__</span>(<span class="params">self</span>):</span><br><span class="line">       <span class="keyword">return</span> <span class="built_in">len</span>(self.root)</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">get_label</span>(<span class="params">self</span>):</span><br><span class="line">       label_list = []</span><br><span class="line">       <span class="keyword">for</span> file <span class="keyword">in</span> self.root:</span><br><span class="line">          file_name = os.path.split(file)[<span class="number">1</span>]</span><br><span class="line">          label = re.split(<span class="string">&#x27;[\d]&#x27;</span>,file_name)[<span class="number">0</span>]</span><br><span class="line">          <span class="comment"># use number split file name</span></span><br><span class="line">          <span class="keyword">if</span> label <span class="keyword">not</span> <span class="keyword">in</span> label_list:</span><br><span class="line">            label_list.append(label)</span><br><span class="line">       <span class="keyword">return</span> label_list</span><br><span class="line"><span class="comment"># In method get_label we can get a list of label</span></span><br></pre></td></tr></table></figure>
+
+<img src="https://s2.loli.net/2022/07/02/O5dDZUN3Y7coTPr.png" alt="image-20220702172930050" style="zoom:67%;" />
+
+<p>Through <code>data.Dataloader</code> we can get the path be shuffled&#x2F; bathched and put it into net moudle.</p>
+<p>Now we can go further, when we extract image from class, net module want two parts: img tensor and label tensor, and we just input list of direction, how method <code>__getitem__()</code>get label information from method <code>get_label()</code>? </p>
+<p>you have two ways:</p>
+<ol>
+<li>do every thing in <code>__init__()</code></li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">DirDataset</span>(data.Dataset):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self,root</span>):</span><br><span class="line">         <span class="built_in">super</span>().__init__()</span><br><span class="line">         self.root = root</span><br><span class="line">         self.label_list = []</span><br><span class="line">         self.label_num = []</span><br><span class="line">         <span class="keyword">for</span> file <span class="keyword">in</span> self.root:</span><br><span class="line">             file_name = os.path.split(file)[<span class="number">1</span>]</span><br><span class="line">             label = re.split(<span class="string">&#x27;[\d]&#x27;</span>,file_name)[<span class="number">0</span>]</span><br><span class="line">             self.label_list.append(label)</span><br><span class="line">            <span class="comment"># 保存所有的标签</span></span><br><span class="line">             self.label_unique = <span class="built_in">list</span>(<span class="built_in">set</span>(self.label_list))</span><br><span class="line">            <span class="comment"># 提取独一无二的标签，也就是类别</span></span><br><span class="line">         <span class="keyword">for</span> file <span class="keyword">in</span> self.label_list:</span><br><span class="line">             self.label_num.append(self.label_unique.index(file))</span><br><span class="line">            <span class="comment"># 找到自己的index作为训练输入的标签</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__getitem__</span>(<span class="params">self,index</span>):</span><br><span class="line">       img_path = self.root[index]</span><br><span class="line">       img_label = self.label_num[index]</span><br><span class="line">       <span class="keyword">return</span> img_path,img_label</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__len__</span>(<span class="params">self</span>):</span><br><span class="line">       <span class="keyword">return</span> <span class="built_in">len</span>(self.root)</span><br></pre></td></tr></table></figure>
+
+
+
+<ol start="2">
+<li>in <code>__init__()</code> call its method</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">DirDataset</span>(data.Dataset):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self,root</span>):</span><br><span class="line">       <span class="built_in">super</span>().__init__()</span><br><span class="line">       self.root = root</span><br><span class="line">       <span class="comment"># 调用自己的方法初始化属性</span></span><br><span class="line">       self.label_name,self.label = self.get_label()</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__getitem__</span>(<span class="params">self,index</span>):</span><br><span class="line">       img_path = self.root[index]</span><br><span class="line">       img_label = self.label[index]</span><br><span class="line">       <span class="keyword">return</span> img_path,img_label</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__len__</span>(<span class="params">self</span>):</span><br><span class="line">       <span class="keyword">return</span> <span class="built_in">len</span>(self.root)</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">get_label</span>(<span class="params">self</span>):</span><br><span class="line">       label_list = []</span><br><span class="line">       label_num = []</span><br><span class="line">       <span class="keyword">for</span> file <span class="keyword">in</span> self.root:</span><br><span class="line">          file_name = os.path.split(file)[<span class="number">1</span>]</span><br><span class="line">          label = re.split(<span class="string">&#x27;[\d]&#x27;</span>,file_name)[<span class="number">0</span>]</span><br><span class="line">          label_list.append(label)</span><br><span class="line">       label_unique = <span class="built_in">list</span>(<span class="built_in">set</span>(label_list))</span><br><span class="line">       <span class="keyword">for</span> file <span class="keyword">in</span> label_list:</span><br><span class="line">          label_num.append(label_unique.index(file))</span><br><span class="line">       </span><br><span class="line">       <span class="keyword">return</span> label_list,label_num</span><br></pre></td></tr></table></figure>
+
+<p>you can chose appropriate way to slove your question.</p>
+<h1 id="LabelMe"><a href="#LabelMe" class="headerlink" title="LabelMe"></a>LabelMe</h1><p>使用深度学习网络进行图像分割。</p>
+<p>首先构建数据集极其对应的蒙版，对所有图像进行处理。</p>
+<div class="tabs" id="the-solution"><ul class="nav-tabs"><li class="tab active"><a href="#the-solution-1">The solution 1</a></li><li class="tab"><a href="#the-solution-2">The solution 2</a></li><li class="tab"><a href="#the-solution-3">The solution 3</a></li></ul><div class="tab-content"><div class="tab-pane active" id="the-solution-1"><p><strong>This is Tab 1.</strong></p></div><div class="tab-pane" id="the-solution-2"><p><strong>This is Tab 2.</strong></p></div><div class="tab-pane" id="the-solution-3"><p><strong>This is Tab 3.</strong></p></div></div></div>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;% video https://example.com/sample.mp4 %&#125;</span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>cherium
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="http://cherium.top/2022/03/24/datapreprocessing/" title="Data PreProcessing Of Deep Learning">http://cherium.top/2022/03/24/datapreprocessing/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/03/10/signalandsystem/" rel="prev" title="信号与系统">
+                  <i class="fa fa-chevron-left"></i> 信号与系统
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2023/02/10/MachineLearning/" rel="next" title="">
+                   <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 2020 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">cherium</span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>

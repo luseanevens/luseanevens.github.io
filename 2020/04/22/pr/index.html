@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha256-Z1K5uhUaJXA7Ll0XrZ/0JhX4lAtZFpT6jkKrEDT0drU=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"cherium.top","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.14.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="随堂笔记，记录一些解释、作业和自己的思考。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="模式识别笔记">
+<meta property="og:url" content="http://cherium.top/2020/04/22/pr/index.html">
+<meta property="og:site_name" content="Ladder">
+<meta property="og:description" content="随堂笔记，记录一些解释、作业和自己的思考。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1ge2proarqpj31380u0ade.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1ge2pts8p6xj30vh0u0qbq.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1ge83up5rg2j30ti0jw7dc.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1ge86wpa4r9j30km0ck401.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1ge872mq6e7j30t60aydj3.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1ge8758n9x7j30wc0dk0un.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1ge87g2sh9mj30ik0bot9z.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlly1ge8h1k2fc0j30ue0bgmyw.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlly1ge8hqqvykwj30ww0hc438.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlly1ge9qomsclxj30x20ke0x1.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1ge9rsom7gij30vu0jojx7.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1ge9saq8xe5j30nm07y43c.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1ge9sc33iqtj30ho072wh1.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1ge9sp2onhyj30n20h4gn3.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1ge9talc9t4j30w20kigoo.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1ge9tjbrrsqj30w40gsn0z.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1ge9viibit8j30uu0gwtao.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1ge9wob26u4j30y20hm0y4.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1ge9wjbxkiyj30uy0dadj0.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1geffzws3tej30e20h275l.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1gefjc7blmoj30ww0hu0x9.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1gefjjp84dbj30t60g8tbb.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1gefjnsd017j30us0dktbc.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1gefjvzznvkj30xk0iswid.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1gefjw4hd21j30qw04igm6.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1gefjy095rsj30d60cydgg.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1georcn9g7hj30ps0jcmyw.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1gemlv0lu2bj30gk01yglo.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1gemlqlqu22j30kc0fsjt0.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1gemmxr8pazj30pk0gidhl.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1geo9f236ebj30x80juwgp.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1geo9ep7mdzj30xu0jqmzb.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1geo9g3roxfj30ws0jwq5m.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1geodlio8q1j30uc0k2779.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1geofdqgsalj30um0i0acy.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlly1gf2iu7zq30j315q0sqgn9.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlly1gf2n187revj30i405wjs6.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlly1gf4ij5qy4cj30p60h0tfh.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlly1gf4kzlope7j30pi0bmq79.jpg">
+<meta property="article:published_time" content="2020-04-22T09:56:59.000Z">
+<meta property="article:modified_time" content="2023-02-10T15:41:38.878Z">
+<meta property="article:author" content="cherium">
+<meta property="article:tag" content="tensorflow">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1ge2proarqpj31380u0ade.jpg">
+
+
+<link rel="canonical" href="http://cherium.top/2020/04/22/pr/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://cherium.top/2020/04/22/pr/","path":"2020/04/22/pr/","title":"模式识别笔记"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>模式识别笔记 | Ladder</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Ladder</p>
+      <i class="logo-line"></i>
+    </a>
+      <img class="custom-logo-image" src="/images/avatar.png" alt="Ladder">
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="nav-number">1.</span> <span class="nav-text">参考资料</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%AE%E5%BD%95"><span class="nav-number">2.</span> <span class="nav-text">目录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%AA%E8%AE%BA"><span class="nav-number">3.</span> <span class="nav-text">绪论</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BA%BF%E6%80%A7%E5%88%86%E7%B1%BB%E5%99%A8"><span class="nav-number">3.1.</span> <span class="nav-text">线性分类器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E5%BE%97%E5%88%B0%E7%BA%BF%E6%80%A7%E5%88%86%E7%B1%BB%E5%87%BD%E6%95%B0"><span class="nav-number">3.2.</span> <span class="nav-text">如何得到线性分类函数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%A7%A3%E5%8C%BA%E5%9F%9F%E7%9A%84%E8%BF%87%E7%A8%8B"><span class="nav-number">3.2.1.</span> <span class="nav-text">解区域的过程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%84%9F%E7%9F%A5%E5%99%A8%E7%AE%97%E6%B3%95"><span class="nav-number">3.2.2.</span> <span class="nav-text">感知器算法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%87%86%E5%88%99%E5%87%BD%E6%95%B0"><span class="nav-number">3.2.3.</span> <span class="nav-text">准则函数</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E7%AE%97%E6%B3%95"><span class="nav-number">3.2.3.1.</span> <span class="nav-text">梯度下降算法</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#LMSE-HK%E7%AE%97%E6%B3%95"><span class="nav-number">3.3.</span> <span class="nav-text">LMSE HK算法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9C%80%E5%B0%8F%E5%B9%B3%E6%96%B9%E8%AF%AF%E5%B7%AE%E7%AE%97%E6%B3%95"><span class="nav-number">3.3.1.</span> <span class="nav-text">最小平方误差算法</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BC%AA%E9%80%86%E6%B3%95%E6%B1%82%E8%A7%A3"><span class="nav-number">3.3.1.1.</span> <span class="nav-text">伪逆法求解</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E9%80%89%E5%8F%96%E4%B8%8D%E5%90%8C%E7%9A%84b%E7%9A%84%E8%A1%A8%E7%8E%B0"><span class="nav-number">3.3.1.2.</span> <span class="nav-text">选取不同的b的表现</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#HK%E7%AE%97%E6%B3%95"><span class="nav-number">3.3.2.</span> <span class="nav-text">HK算法</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%AE%97%E6%B3%95%E6%B5%81%E7%A8%8B"><span class="nav-number">3.3.2.1.</span> <span class="nav-text">算法流程</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%9C%E4%B8%9A"><span class="nav-number">3.3.3.</span> <span class="nav-text">作业</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%94%AF%E6%8C%81%E5%90%91%E9%87%8F%E6%9C%BA"><span class="nav-number">4.</span> <span class="nav-text">支持向量机</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A6%82%E5%BF%B5"><span class="nav-number">4.1.</span> <span class="nav-text">概念</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Lagrange%E5%AF%B9%E5%81%B6%E6%80%A7"><span class="nav-number">4.1.1.</span> <span class="nav-text">Lagrange对偶性</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="cherium"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">cherium</p>
+  <div class="site-description" itemprop="description">莫听穿林打叶声，何妨吟啸且徐行</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">26</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="cc-license animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://cherium.top/2020/04/22/pr/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="cherium">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ladder">
+      <meta itemprop="description" content="莫听穿林打叶声，何妨吟啸且徐行">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="模式识别笔记 | Ladder">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          模式识别笔记
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-04-22 17:56:59" itemprop="dateCreated datePublished" datetime="2020-04-22T17:56:59+08:00">2020-04-22</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-02-10 23:41:38" itemprop="dateModified" datetime="2023-02-10T23:41:38+08:00">2023-02-10</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/python/" itemprop="url" rel="index"><span itemprop="name">python</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>随堂笔记，记录一些解释、作业和自己的思考。</p>
+<span id="more"></span>
+
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://www.icourse163.org/course/BIT-1206703821">北京理工大学 模式识别</a></li>
+</ul>
+<h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><ul>
+<li><a href="#%E7%BB%AA%E8%AE%BA">绪论</a></li>
+</ul>
+<h2 id="绪论"><a href="#绪论" class="headerlink" title="绪论"></a>绪论</h2><p><font color = red>模式识别</font>，模式指的是特征，识别指的是对特征进行分类。其研究有两个方向：</p>
+<ul>
+<li>研究应用计算机进行分类的方法</li>
+<li>基于生物学进行分类的方法</li>
+</ul>
+<p>所以模式识别的学习就是对分类器的学习。其主要分为统计模式识别和结构模式识别，主要研究<em>统计模式识别</em>。\</p>
+<p>本学期主要内容如下：</p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ge2proarqpj31380u0ade.jpg" alt="截屏2020-04-22 下午6.19.37"></p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ge2pts8p6xj30vh0u0qbq.jpg" alt="截屏2020-04-22 下午6.21.32"></p>
+<p>在特征提取的研究中，特征空间中的每一个点对应一幅已提取的图像在分类的过程中，分类的准则是类内距离最近，类见距离最大。模式识别是研究分类的方法，不研究特征的提取。\</p>
+<p>但是分类的标准是我们确定需要的特征，特征越多，维数也就越多，精度也会相应变高，但是纬度越高，点之间的距离就会变得越来越大，紧密性变差，造成维数灾难。</p>
+<p>防止维数灾难的办法：</p>
+<ul>
+<li><p>特征降维：特征并不一定是完全不相关的，可以用某些特征线性的表述其他特征，以达到降维的目的</p>
+</li>
+<li><p>增加样本数量</p>
+</li>
+</ul>
+<p>监督学习和非监督学习的主要区别在于是否有标签。监督学习是指有人设定有的分类原则下学习，存在人设有的标签，此时机器是无法超越人的，其在人的认知之内；非监督学习时人只提供样本，不提供分类标准，无标签，此时机器是可以超越人的。\</p>
+<p>衡量一个分类器是否优秀的标准：</p>
+<ul>
+<li>泛化能力</li>
+<li>过拟合</li>
+</ul>
+<p>这门课不妨叫做：从图像处理到人工智能。 </p>
+<h3 id="线性分类器"><a href="#线性分类器" class="headerlink" title="线性分类器"></a>线性分类器</h3><p>这节主要讨论<font color=red>有监督的分类问题</font>，即有标签的分类问题,前五种算法均研究二分类的问题，最后会延伸到多分类的问题。</p>
+<ul>
+<li><a href="#">线性判别</a></li>
+<li><a href="#%E6%84%9F%E7%9F%A5%E5%99%A8%E7%AE%97%E6%B3%95">感知器算法</a></li>
+<li><a href="">LMSE算法（HK算法）</a></li>
+<li><a href="">Fisher线性判别分析</a></li>
+<li><a href="">支持向量机（SVM）</a></li>
+<li><a href="">多分类的线性判别</a></li>
+</ul>
+<p>线性分类的关键问题在于<font color=blue>如何找到一个有效的分类决策规则，能够对新的样本正确的分类。</font>即找到正确高效的<font color =red>判别函数</font>，如图，如果存在合适的判别函数，只需要带入样本点的坐标，就可以根据结果的正负分类。在如图的特征空间中，如何设计线性判别函数？</p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ge83up5rg2j30ti0jw7dc.jpg" alt="image-20200427101459184"></p>
+<p>判别函数是线性的，其可以表示为：<br>$$<br>G(x)&#x3D;\boldsymbol w^T\boldsymbol x+\omega_0<br>$$</p>
+<p>默认的加粗小写字母约定为列向量，转置后表示行向量。\</p>
+<p>特征向量：$\boldsymbol x&#x3D;[x_1,x_2,….,x_n]$ \</p>
+<p>其代表着图像的特征，如上图，特征的值的不同影响着特征点在特征空间中的分布。\</p>
+<p>权重： $\boldsymbol\omega&#x3D;[\omega_1,\omega_2,….,\omega_n]$</p>
+<p>偏差： $\omega_0$</p>
+<p>齐次表示形式：<br>$$<br>G(x)&#x3D;\alpha^Ty \\<br>\boldsymbol\alpha&#x3D;[\omega_1,\omega_2,…..,\omega_n,\omega_1] \\<br>\boldsymbol y&#x3D;[x_1,x_2,….,x_n,1]^T<br>$$<br> 若$\boldsymbol x$是一个二维向量，则$G(x)$是一条线，三维就是一个面，高维则称为超平面，但是他总能将整个特征空间分为两类。<font color=red>但是并不是所有的模式识别问题都可以通过线性分类器来解决。</font>即不是所有问题都可以找到一个线性分类的绝对边界，如下图所示：</p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ge86wpa4r9j30km0ck401.jpg" alt="image-20200427120044394"></p>
+<p>那么如何判定一个样本集是线性可分的？\</p>
+<p>参考：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/u013300875/article/details/44081067">如何高效的判断样本集线性可分</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/LG1259156776/article/details/52145872">HK算法</a></li>
+</ul>
+<p>如过各个类别的样本的分布区域互不相交，并且都是凸集，那么他一定是线性可分的。有凹集存在时可能不可分。</p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ge872mq6e7j30t60aydj3.jpg" alt="image-20200427120625799"></p>
+<p>当样本集由不连通的子区域构成，也会造成线性不可分的问题，即异或问题。</p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ge8758n9x7j30wc0dk0un.jpg" alt="image-20200427120856211"></p>
+<p>解决异或问题的办法：</p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ge87g2sh9mj30ik0bot9z.jpg" alt="image-20200427121921019"></p>
+<p>区分$x_1x_2&gt;0,x_1x_2&lt;0$，就可以区分样本集，但是这样的分类函数是非线性的。</p>
+<p>对于线性分类器而言，将样本空间中样本点的坐标带入线性分类器的判别函数，得到的值的绝对值衡量着样本点到到决策面的远近，当一个样本距离分类边界越远，判别函数的绝对值也就越大。</p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlly1ge8h1k2fc0j30ue0bgmyw.jpg" alt="image-20200427175102276"></p>
+<p>不妨拓展到三维空间，$G(x)&#x3D;\boldsymbol \omega^T\boldsymbol x+\boldsymbol \omega_0$,对于判别函数而言,参数$\omega$是一定的，其是特征空间中的一个向量。当$G(x)&#x3D;0$时，如图所示，$x_1 hat\quad and\quad x_2 hat $位于与$\vec w$垂直的平面上。</p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlly1ge8hqqvykwj30ww0hc438.jpg" alt="image-20200427181536366"></p>
+<p>权向量指向正样本的原因是其一定指向正样本，当依据某些标准设计出线性分类器后，权向量最为参数唯一确定，由原点指向$[\omega_1,\omega_2,….,\omega_n]$。将特征方程打开之后就可以写为：<br>$$<br>\omega_1x_1+\omega_2x_2+…..+\omega_nx_n+\omega_0<br>$$<br>令$\boldsymbol x&#x3D;\boldsymbol \omega$，则结果为：<br>$$<br>\omega_1^2+\omega_2^2+….\omega_n^2<br>$$<br>其为恒正值，所以$\omega\quad hat$处在正样本区域，即权向量始终指向正平面。（$\omega_0$只影响决策面沿某一轴进行平移，所以$\omega_0$可能会影响决策面在特征向量的上面还是下面，并不影响指向，令其为0。）老师讲的<code>认为指向正样本是种规定，若指向负平面，则正样本于权向量之间的夹角大于180，乘后为负值，与正样本要求得数为正值相悖。</code>我认为逻辑颠倒了，不能这样解释。</p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlly1ge9qomsclxj30x20ke0x1.jpg" alt="image-20200428201027758"></p>
+<p>$x_p$在决策边界上，所以$w^Tx_p+w_0&#x3D;0$ \</p>
+<p>注：$w^Tw&#x3D;w^2$,得出，样本点到决策边界的距离是将样本点坐标带入分类函数后除以权向量的模。<br>$$<br>\left| w\right|<br>$$<br>范数，这种被称为2-范数，即元素平方和开根号，一般就被叫做模了，默认的讲的一般就是2-范数。还有1-范数，是绝对值之和。</p>
+<p>参考：<a href="%5Bhttps://baike.baidu.com/item/%E8%8C%83%E6%95%B0%5D(https://baike.baidu.com/item/%E8%8C%83%E6%95%B0)">三种p范数推倒得出的矩阵范数</a></p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ge9rsom7gij30vu0jojx7.jpg" alt="image-20200428204857305"></p>
+<p>总结：线性分类器由决策分类函数和与之对应的线性分类规则构成。</p>
+<h3 id="如何得到线性分类函数"><a href="#如何得到线性分类函数" class="headerlink" title="如何得到线性分类函数"></a>如何得到线性分类函数</h3><p>研究有监督的分类问题时，首先拿人已经分好类的样本进行特征提取，进过分类器（由人来告知分类决策规则，如$G(x)&gt;0$为猫，$G(x)&lt;0$为狗），经过训练之后再拿图片进行测试，得到结果。</p>
+<p>训练：</p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ge9saq8xe5j30nm07y43c.jpg" alt="image-20200428210617013"></p>
+<p>测试：</p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ge9sc33iqtj30ho072wh1.jpg" alt="image-20200428210737307"></p>
+<p>给定有标签的样本之后训练的过程，就是获得$w$,$w_0$的过程。而分类具有极多的情况，如图：</p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ge9sp2onhyj30n20h4gn3.jpg" alt="image-20200428212006082">如图，划分两个区域可以存在多个判别函数完全符合要求，这样就意味着存在多组$\boldsymbol w$。为了求得这些$w$,从数学的角度上引入了权空间。权空间是以求解$w$的角度出发的，为了便于区别，之后记做$\alpha$。</p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ge9talc9t4j30w20kigoo.jpg" alt="image-20200428214046727"></p>
+<p>由分类决策确定$y_i\in w_1,G(y_i)&gt;0$,反之$y_i\in w_2,G(y_i)&lt;0$，符合这样条件的$\alpha$就是解区域。为了方便计算与确定方向，设计了$y_i’$，如上，这样的好处是本来属于$w_2$，$G(x)$应该为负值，但是加了负号之后就统一都为正值了，其操作也就相当于样本点<a href="#%E8%A7%A3%E5%8C%BA%E5%9F%9F%E7%9A%84%E8%BF%87%E7%A8%8B">关于原点取到了对称点</a>。\</p>
+<p><font color = blue>认为如果将所有的样本点带入G(y)之后都大于0，就认为这个确定出来的权参数可以实现特征分类。这是判别是否能实现特征分类的条件。</font></p>
+<p>这是由数学推导得出的，在$y_i\in w_1,G(y_i)&gt;0$,$y_i\in w_2,G(y_i)&lt;0$的限定条件下，增广化样本向量之后，符合条件的$\alpha$不会存在使$\alpha^Ty_i’&lt;0$的情况。若存在$\alpha^Ty_i’&lt;0$，则说明$\alpha$并不在交集所确定的区域中，也就需要进一步迭代得到合适的$\alpha$,这就是梯度下降算法的衡量标准的由来。</p>
+<p><font color=red>之后所有的y都认为是统一化后的。</font></p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ge9tjbrrsqj30w40gsn0z.jpg" alt="image-20200428214910826"></p>
+<h4 id="解区域的过程"><a href="#解区域的过程" class="headerlink" title="解区域的过程"></a>解区域的过程</h4><ul>
+<li>规范化样本点（变换坐标）</li>
+</ul>
+<p>取到$w_2$内所有样本点关于原点的对称点（$y_i\in w_2,\alpha^Ty_i&lt;0$）并使得$\alpha^Ty_i’&#x3D;0$,得到所有样本点向量的垂线。</p>
+<ul>
+<li>判定方向</li>
+</ul>
+<p>若$\alpha^Ty_i’&gt;0$则$\alpha^T$应当与$y_i’$（规范化后就是找对称点）成夹角，所以符合要求的空间是从垂线朝向$y_i’$的半平面。</p>
+<ul>
+<li>画交集</li>
+</ul>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ge9viibit8j30uu0gwtao.jpg" alt="image-20200428225735741"></p>
+<ul>
+<li>交集中表示所有可以取到的$\alpha$。</li>
+</ul>
+<p>注：</p>
+<ul>
+<li><p>区别权空间和样本空间，样本空间里坐标轴为$[x_1,x_2,….,x_n]$，方程写作$G(x)&#x3D;\boldsymbol w \boldsymbol x+w_o&#x3D;0$，作为点、线、面或超平面存在。权空间则是为了方便求解权重而存在的数学概念，需要用到具体的样本点的坐标来得到交集，这是一个纯数学运算过程。</p>
+</li>
+<li><p>这里的样本点都是线性可分的。</p>
+</li>
+</ul>
+<h4 id="感知器算法"><a href="#感知器算法" class="headerlink" title="感知器算法"></a>感知器算法</h4><p>求$\boldsymbol w$,$w_0$具体的方法。\</p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ge9wob26u4j30y20hm0y4.jpg" alt="image-20200428233744283"></p>
+<p>这张图所表示的基本思想是，$\sum x_1w_1$之后与$\theta$进行判别，若大于这个阈值，则输出1，小于这个阈值则输出0。这个形式其实是$g(x)&#x3D;\boldsymbol w^T \boldsymbol x + w_0$	的变形，求和部分就是两矩阵求内积的部分，$\theta$就是移项之后的$w_0$，这是判别函数的一个变形形式。其本质是激活函数为 Heaviside step 函数的一个二分类逻辑斯蒂回归模型。</p>
+<h4 id="准则函数"><a href="#准则函数" class="headerlink" title="准则函数"></a>准则函数</h4><p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ge9wjbxkiyj30uy0dadj0.jpg" alt="image-20200428233257763"></p>
+<p>为了判断参数的好坏，需要有一个公式来衡量，因此又被称为损失函数。这里选用的损失函数是这样的：</p>
+<p><strong>准则函数</strong>：所有错分样本的判别函数之和，再乘以$-1$。</p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1geffzws3tej30e20h275l.jpg" alt="image-20200503183359829"></p>
+<p><font color = red >这个函数的目的是为了实现所有样本正确分类，而实现正确分类的标准就是：</font>使得$G(x)&#x3D; \boldsymbol \alpha^T \boldsymbol y_i’&gt;0$。错分样本带入决策函数中是$&lt;0$的，所以取所有错分样本，取相反数求和，并取最小值，得到一个$\alpha^*$。求和得到的值越小，就说明判别函数越精准。如果为0的话，就满足了所有样本正确分类。</p>
+<p>为使得其取得最小值，一般思想是求函数的导数，很明显，这是一个累加的形式，最终求完倒数的结果是$-\sum y_i\quad (\alpha^Ty_i\leq 0)$	,而样本点的坐标是固定的，不是一个变量，所以不能求导来实现求最小值。这时候使用<font color=blue>梯度下降算法</font>。</p>
+<h5 id="梯度下降算法"><a href="#梯度下降算法" class="headerlink" title="梯度下降算法"></a>梯度下降算法</h5><p>泰勒展开：</p>
+<p>$f(x)&#x3D;f(x_0)+df(x_0)(x-x_0)+…$</p>
+<p> 而所谓的梯度下降，故名思意：</p>
+<p>$f(x)&lt;f(x_0)$</p>
+<p>即从$f(x_0)$移动到$f(x)$的过程是一个下降的过程。即：</p>
+<p>$df(x_0)(x-x_0)&lt;0$	为负数。一维的情况下，说明两部分异号，二维的情况下，两部分均为向量，则两向量的夹角为钝角，而当这个钝角取到$180^\circ$的话，这个乘积就取到了最小值，此时下降的也就最快。所以梯度下降算法简单的将就是下降方向选取梯度相反的方向，选取角度来控制下降的速度。</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/pengchengliu/article/details/80932232">老师给的参考链接</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/c7e642877b0e"><strong>深入浅出的理解梯度下降算法</strong></a></li>
+<li>求最小值使用梯度下降算法，求最大值使用梯度上升算法</li>
+</ul>
+<p>梯度下降算法是一个多次迭代的过程，从t时刻开始迭代，直到结束,<font color=red>步长是在调整自变量</font>,也就是$\alpha(t)$。</p>
+<p>$\rho_t$指的是学习率（步长），是一个常数，步长不能太大，太大的话就无法线性的表示泰勒展开了，他需要满足泰勒展开的条件。</p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gefjc7blmoj30ww0hu0x9.jpg" alt="image-20200503202938755"></p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gefjjp84dbj30t60g8tbb.jpg" alt="image-20200503203651328"></p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gefjnsd017j30us0dktbc.jpg" alt="image-20200503204046976"></p>
+<p>通过梯度下降算法是一定可以的到一个解的，但是是否是最优解，是无法衡量的。</p>
+<p>对于线性可分的样本集，感知器算法一定可以找到最优解。</p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gefjvzznvkj30xk0iswid.jpg" alt="image-20200503204839205"></p>
+<p>单样本感知器算法；\</p>
+<p>赠广化就是增加一个维度，为了统一$w_0$进入方程。若权向量是三位的，则特征向量是二维的。</p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gefjw4hd21j30qw04igm6.jpg" alt="image-20200503204848954"><br>$$<br>\alpha^Ty&#x3D;0 \\<br>\alpha^T[x_1,x_2,1]&#x3D;0\\<br>-2x_1+0x_2+1&#x3D;0<br>$$<br><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gefjy095rsj30d60cydgg.jpg" alt="image-20200503205036176"></p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">%% matlab codeing</span></span><br><span class="line">clc;</span><br><span class="line">close all;</span><br><span class="line">clear all;</span><br><span class="line">Y=[<span class="number">0</span> <span class="number">0</span> <span class="number">1</span>;</span><br><span class="line">	<span class="number">0</span> <span class="number">1</span> <span class="number">1</span>;</span><br><span class="line">	<span class="number">-1</span> <span class="number">0</span> <span class="number">-1</span>;</span><br><span class="line">	<span class="number">-1</span> <span class="number">-1</span> <span class="number">-1</span>];</span><br><span class="line">p=<span class="number">1</span> <span class="comment">% learning rate</span></span><br><span class="line">a_cur=[<span class="number">0</span> <span class="number">0</span> <span class="number">0</span>]; <span class="comment">%</span></span><br><span class="line"><span class="keyword">while</span>(<span class="number">1</span>)</span><br><span class="line">	c = <span class="number">0</span>;<span class="comment">% 计数器,每次循环c都置为0</span></span><br><span class="line">	<span class="keyword">for</span> <span class="built_in">i</span>=<span class="number">1</span>:<span class="built_in">size</span>(Y,<span class="number">1</span>)</span><br><span class="line">		tmp = a_cur(<span class="keyword">end</span>,:)*Y(<span class="built_in">i</span>,:)&#x27;;</span><br><span class="line">		<span class="keyword">if</span> tmp&gt;<span class="number">0</span></span><br><span class="line">			c = c+<span class="number">1</span></span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">			a_t = a_cur(<span class="keyword">end</span>,:)+p*Y(<span class="built_in">i</span>,:);</span><br><span class="line">			a_cur+[a_cur;a_t];</span><br><span class="line">			</span><br><span class="line">		<span class="keyword">end</span></span><br><span class="line">	<span class="keyword">end</span></span><br><span class="line">	id c==<span class="built_in">size</span>(Y,<span class="number">1</span>)<span class="comment">% 确保所有都正确分类</span></span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line">	<span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="LMSE-HK算法"><a href="#LMSE-HK算法" class="headerlink" title="LMSE HK算法"></a>LMSE HK算法</h3><p>感知器算法研究如何对线性可分的样本进行分类，单感知器无法分类非线性样本且无法确定样本是否线性可分。</p>
+<p>针对线性不可分的样本提出了LMSE算法和HK算法。</p>
+<ul>
+<li>希望对输入的训练样本是否线性可分作出判断</li>
+<li>样本线性不可分时，能够给出某种准则下的最优解（错分样本尽可能的少）</li>
+</ul>
+<h4 id="最小平方误差算法"><a href="#最小平方误差算法" class="headerlink" title="最小平方误差算法"></a>最小平方误差算法</h4><p><strong>LMSE算法（Least Mean Square Error）</strong></p>
+<ul>
+<li><p>参考《模式识别》 张学工 P69.</p>
+</li>
+<li><p>复习</p>
+</li>
+</ul>
+<p>$$<br>线性判别函数：G(x)&#x3D;\boldsymbol w^T\boldsymbol x+w_0\\<br>\quad \boldsymbol x&#x3D;[x_1,x_2,…,x_n]^T\\<br>\quad \boldsymbol w&#x3D;[w_1,w_2,…,w_n]^T\\<br>齐次表示：G(y)&#x3D;\boldsymbol\alpha^ T\boldsymbol y\\<br>\quad \boldsymbol y&#x3D;[y_1,y_2,…,y_n,1]^T\\<br>\quad \boldsymbol w&#x3D;[w_1,w_2,…,w_n,w_0 ]^T\\<br>$$</p>
+<ul>
+<li><p>LMSE算法</p>
+<p>其本质是希望将$\alpha^Ty&gt;0$这样一个不等式的约束转化为一个等式的约束，所以引入了$\alpha^Ty_i&#x3D;b_i&gt;0,i&#x3D;1,2,…,N$,转化为了$\boldsymbol Y\boldsymbol \alpha&#x3D;\boldsymbol b$,如果存在$N$个样本,则$\boldsymbol Y$可以写作：</p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1georcn9g7hj30ps0jcmyw.jpg" alt="image-20200511195646809"></p>
+</li>
+</ul>
+<p>第一行表示第一个样本的$d&#x3D;n+1$个维度，最后一列是1或-1，是齐次表示的形式。第一列代表有$N$个样本。$\alpha$是$n+1<em>1$得参数阵，所以$b$也是$N+1</em>1$矩阵。这相当于线性判别函数的齐次表达式两边同时取到了转置。</p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gemlv0lu2bj30gk01yglo.jpg" alt="image-20200509231545961"></p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gemlqlqu22j30kc0fsjt0.jpg" alt="image-20200509231129754"></p>
+<ul>
+<li><p>样本点到决策面的距离$d&#x3D;\frac{G(x)}{||w||}&#x3D;\frac{\alpha y_i}{||w||}&#x3D;\frac{b}{||w||}$</p>
+</li>
+<li><p>若$||w||&#x3D;1$的话，样本点到决策面的距离就是$b$了。</p>
+</li>
+<li><p>注意这个方程中的$\alpha$是未知的一系列参数，目的是为了求得这些参数以实现分类。b可以通过感知器算法求得。</p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gemmxr8pazj30pk0gidhl.jpg" alt="image-20200509235258734"></p>
+</li>
+</ul>
+<p>当N&gt;d时，方程的未知数小于方程的总是，叫做超定方程。超定方程指的是约束条件过于严格的情况，属于矛盾方程组，无法求得精确解。解法：</p>
+<ul>
+<li>伪逆法：依据矩阵求导求出极小值的方法</li>
+<li>最小二乘法与梯度下降算法相结合</li>
+</ul>
+<h5 id="伪逆法求解"><a href="#伪逆法求解" class="headerlink" title="伪逆法求解"></a>伪逆法求解</h5><ul>
+<li>参考工程数学基础 向量与矩阵求导部分</li>
+</ul>
+<p>$$<br>\alpha^*&#x3D;argmin_aJ_s(a)\\<br>&#x3D; argmin_a||\boldsymbol Y\boldsymbol \alpha -\boldsymbol b||^2\\<br>\to \\<br>\bigtriangledown J_s(\boldsymbol \alpha)&#x3D;\frac{\partial J_s(\boldsymbol \alpha)}{\partial \boldsymbol \alpha}&#x3D;0,\to\\<br>\bigtriangledown J_s(\alpha)&#x3D;2Y^T(Y\alpha-b)&#x3D;0,\to\\<br>\alpha^*&#x3D;(Y^TY)^{-1}Y^Tb&#x3D;Y^+b<br>$$</p>
+<ul>
+<li>局限性<ul>
+<li>对称矩阵$Y^TY$是不一定存在的</li>
+<li>$(Y^TY)^{-1}$,是$(n+1)*(n+1)$的矩阵，如果提取的特征量过多，则计算机计算量过大。</li>
+<li>权向量的理解依赖于b，不同的b会得到不同的权向量。</li>
+<li>对线性可分的情况，不恰当的b的选择会导致伪逆解不一定位于正确的解区域。</li>
+</ul>
+</li>
+</ul>
+<p>为解决当维度较大，矩阵求逆耗时的问题，一般会采用梯度下降算法获得最优解：</p>
+<p>![image-20200511092949754](&#x2F;Users&#x2F;cherium&#x2F;Library&#x2F;Application Support&#x2F;typora-user-images&#x2F;image-20200511092949754.png)</p>
+<h5 id="选取不同的b的表现"><a href="#选取不同的b的表现" class="headerlink" title="选取不同的b的表现"></a>选取不同的b的表现</h5><p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1geo9f236ebj30x80juwgp.jpg" alt="image-20200511093619735"></p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1geo9ep7mdzj30xu0jqmzb.jpg" alt="image-20200511093558578"></p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1geo9g3roxfj30ws0jwq5m.jpg" alt="image-20200511093719811"></p>
+<p>其过度的依赖于给定的b（松弛变量），需要有合适的办法给到合适的b。</p>
+<h4 id="HK算法"><a href="#HK算法" class="headerlink" title="HK算法"></a>HK算法</h4><p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1geodlio8q1j30uc0k2779.jpg" alt="image-20200511120053758"><br>$$<br>\frac{\partial J_p(\alpha)}{\partial b}&#x3D;\\<br>\bigtriangledown_b(\alpha^TY^TY\alpha-2\alpha^TY^Tb+b^Tb)&#x3D;\\<br>\bigtriangledown_b(\alpha^TY^TY\alpha-2\alpha^TY^Tb+b^TIb)&#x3D;\\<br>0-2Y\alpha+2b&#x3D;\\<br>-2(Y\alpha-b)<br>$$<br>绝对值表示是为了保证在b&lt;0时，b就不再更新了。</p>
+<h5 id="算法流程"><a href="#算法流程" class="headerlink" title="算法流程"></a>算法流程</h5><ul>
+<li>当t&#x3D;0时，设定初始松弛向量$b(0)$,并求取初始向量$\alpha(0)&#x3D;(\boldsymbol Y^T \boldsymbol Y)\boldsymbol Y^T \boldsymbol b(t)$</li>
+<li>计算误差向量：$e(t)&#x3D;\boldsymbol Y \boldsymbol \alpha(t)-\boldsymbol b(t)$</li>
+<li>计算$\delta(t)&#x3D;\mu_t(e(t)+|e(t)|)$</li>
+<li>更新权向量:</li>
+</ul>
+<p>$$<br>\alpha(t+1)&#x3D;(\boldsymbol Y^T \boldsymbol Y)^{-1}\boldsymbol Y^T \boldsymbol b(t+1)\\<br>&#x3D;(\boldsymbol Y^T\boldsymbol Y)^{-1}\boldsymbol Y^T(\boldsymbol b(t)+\boldsymbol \delta(t))\\<br>&#x3D;\boldsymbol \alpha(t)+(\boldsymbol Y^T \boldsymbol Y)^{-1}\boldsymbol Y^T \boldsymbol \delta(t+1)<br>$$</p>
+<ul>
+<li><p>更新松弛变量：$b(t+1)&#x3D;b(t)+\delta(t)$</p>
+</li>
+<li><p>重复 2-5 ，直到所有的e&#x3D;0(极小值)，中止迭代</p>
+<p>算法的收敛性在$\ 0&lt;	\mu_t&lt;1$	且线性可分情况下已得到了证明，注意学习率的范围。</p>
+</li>
+</ul>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1geofdqgsalj30um0i0acy.jpg" alt="image-20200511130235507"></p>
+<ul>
+<li>LMSE算法和HK算法都是需要求逆的，当样本的数目很多时计算量会很大，这也是LMSE和HK算法的不足。</li>
+<li>LMSE算法中的$\boldsymbol b$是希望找到一条分界线使得样本到分界线的距离是$||b||$，或是$||b||$的倍数，这是LMSE、HK算法的核心。</li>
+</ul>
+<h4 id="作业"><a href="#作业" class="headerlink" title="作业"></a>作业</h4><p>&#x3D;&#x3D;证明e各分量小于等于0时，样本集线性不可分。&#x3D;&#x3D;</p>
+<h2 id="支持向量机"><a href="#支持向量机" class="headerlink" title="支持向量机"></a>支持向量机</h2><p>感知器算法可以采用不同的初始值和不同的迭代参数获得不同的决策平面。</p>
+<h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><ul>
+<li><p>&#x3D;&#x3D;最优分类超平面&#x3D;&#x3D;：一个超平面，若其能够将训练样本正确分开，且两类样本离这个超平面都最远。</p>
+<ul>
+<li>分类间隔（Margin）：两类样本中&#x3D;&#x3D;离分类面最近的样本&#x3D;&#x3D;到分类面的距离。 </li>
+<li>支持向量：决定分类间隔的点被称为支持向量，最优分类超平面的衡量标准是使得分类间隔最大，所以决定决策面的是这些&#x3D;&#x3D;距离决策面最近的点&#x3D;&#x3D;，这些点被称为&#x3D;&#x3D;支持向量&#x3D;&#x3D;$x_s$。如图红框所标注。</li>
+</ul>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlly1gf2iu7zq30j315q0sqgn9.jpg" alt="image-20200523174026786"></p>
+</li>
+</ul>
+<p>由此可知：<strong>SVM的优化目标是：</strong>&#x3D;&#x3D;求取能带来最大分类间隔的权向量&#x3D;&#x3D;，即最大化$d$。<br>$$<br>线性判别函数：G(\boldsymbol x)&#x3D;\boldsymbol w^T\boldsymbol x +w_0&#x3D;0\\<br>分类间隔：r&#x3D;\frac{G(\boldsymbol x)}{||\boldsymbol w||}\\<br>d&#x3D;2r<br>$$<br>由于样本是给定的，我们只可以调整决策函数的权参，所以SVM算法使用&#x3D;&#x3D;固定分子，最小化分母&#x3D;&#x3D;的方法。令$G(x_s)&#x3D;\pm 1$简化计算，<code>+</code>为正样本，<code>-</code>为负样本。<br>$$<br>min\frac{1}{2}||w||^2,s.t.|G(x_s)|&#x3D;1<br>$$<br>$\frac{1}{2}$是为了方便求导时去掉平方，平方则是为了将求$||w||$时，开根号的过程去掉。由于支持向量是距离决策边界最近的点，且$G(x_s)&#x3D;1$，所以，&#x3D;&#x3D;其余的点到决策边界的距离一定大于1&#x3D;&#x3D;，即$|G(x_i)|\ge 1$ 。</p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlly1gf2n187revj30i405wjs6.jpg" alt="image-20200523200541271"></p>
+<p>&#x3D;&#x3D;s.t. 的意思是 满足后面的条件&#x3D;&#x3D;，$y_i&#x3D;sgn(\boldsymbol w^T\boldsymbol x_i +w_0)，sgn()$是符号函数，自变量为正时取$1$，自变量为负时取$-1$，下面那两句话的意思其实就是$|G(x)|&gt;1$。</p>
+<p><code>$w^2$是一个凸函数，这是一个凸优化的问题，可以使用QP（quadratic program）的优化包直接求解。</code></p>
+<p>数学上使用&#x3D;&#x3D;Lagrange对偶变换&#x3D;&#x3D;进行求解。</p>
+<h4 id="Lagrange对偶性"><a href="#Lagrange对偶性" class="headerlink" title="Lagrange对偶性"></a>Lagrange对偶性</h4><p>&#x3D;&#x3D;需要补充&#x3D;&#x3D;</p>
+<p>引入拉格朗日对偶变量，便可以通过拉格朗日函数将约束条件融合到目标函数里去。</p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlly1gf4ij5qy4cj30p60h0tfh.jpg" alt="image-20200525110102105"></p>
+<p> <img src="https://tva1.sinaimg.cn/large/007S8ZIlly1gf4kzlope7j30pi0bmq79.jpg" alt="image-20200525122603557"></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>cherium
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="http://cherium.top/2020/04/22/pr/" title="模式识别笔记">http://cherium.top/2020/04/22/pr/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/tensorflow/" rel="tag"># tensorflow</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2020/04/20/envirconf/" rel="prev" title="配置工作环境">
+                  <i class="fa fa-chevron-left"></i> 配置工作环境
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2020/04/27/EngineeringMathematicsFD/" rel="next" title="工程数学基础">
+                  工程数学基础 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 2020 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">cherium</span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>
