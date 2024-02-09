@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
@@ -17,22 +17,22 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha256-Z1K5uhUaJXA7Ll0XrZ/0JhX4lAtZFpT6jkKrEDT0drU=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"cherium.top","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.14.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"cherium.top","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.14.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
 
     <meta name="description" content="PR CIFAR10记录一下神经网络分类从单CNN的60%调参到90%。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="PR CIFAR10">
 <meta property="og:url" content="http://cherium.top/2020/03/11/prpractice/index.html">
-<meta property="og:site_name" content="Ladder">
+<meta property="og:site_name" content="Warehouse">
 <meta property="og:description" content="PR CIFAR10记录一下神经网络分类从单CNN的60%调参到90%。">
-<meta property="og:locale" content="zh_CN">
+<meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlly1gfmb1tiknfj30se0r87ah.jpg">
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlly1gfmb9ytvu7j30pg0lejwp.jpg">
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1gfme2vo8vgj30pg0o6gqx.jpg">
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1gfpwz1y68pj30s80qy44v.jpg">
 <meta property="article:published_time" content="2020-03-11T01:22:23.000Z">
-<meta property="article:modified_time" content="2023-02-10T15:41:38.878Z">
-<meta property="article:author" content="cherium">
+<meta property="article:modified_time" content="2024-02-09T09:07:10.053Z">
+<meta property="article:author" content="clim">
 <meta property="article:tag" content="tensorflow">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://tva1.sinaimg.cn/large/007S8ZIlly1gfmb1tiknfj30se0r87ah.jpg">
@@ -42,10 +42,10 @@
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://cherium.top/2020/03/11/prpractice/","path":"2020/03/11/prpractice/","title":"PR CIFAR10"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://cherium.top/2020/03/11/prpractice/","path":"2020/03/11/prpractice/","title":"PR CIFAR10"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>PR CIFAR10 | Ladder</title>
+<title>PR CIFAR10 | Warehouse</title>
   
 
 
@@ -67,7 +67,7 @@
     <div class="column">
       <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
   <div class="site-nav-toggle">
-    <div class="toggle" aria-label="切换导航栏" role="button">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
         <span class="toggle-line"></span>
         <span class="toggle-line"></span>
         <span class="toggle-line"></span>
@@ -78,14 +78,14 @@
 
     <a href="/" class="brand" rel="start">
       <i class="logo-line"></i>
-      <p class="site-title">Ladder</p>
+      <p class="site-title">Warehouse</p>
       <i class="logo-line"></i>
     </a>
-      <img class="custom-logo-image" src="/images/avatar.png" alt="Ladder">
+      <img class="custom-logo-image" src="/images/avatar.png" alt="Warehouse">
   </div>
 
   <div class="site-nav-right">
-    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
     </div>
   </div>
 </div>
@@ -93,7 +93,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li>
   </ul>
 </nav>
 
@@ -108,10 +108,10 @@
     <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
-          文章目录
+          Table of Contents
         </li>
         <li class="sidebar-nav-overview">
-          站点概览
+          Overview
         </li>
       </ul>
 
@@ -124,28 +124,28 @@
 
         <div class="site-overview-wrap sidebar-panel">
           <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <img class="site-author-image" itemprop="image" alt="cherium"
+    <img class="site-author-image" itemprop="image" alt="clim"
       src="/images/avatar.png">
-  <p class="site-author-name" itemprop="name">cherium</p>
-  <div class="site-description" itemprop="description">莫听穿林打叶声，何妨吟啸且徐行</div>
+  <p class="site-author-name" itemprop="name">clim</p>
+  <div class="site-description" itemprop="description"></div>
 </div>
 <div class="site-state-wrap animated">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">26</span>
-          <span class="site-state-item-name">日志</span>
+          <span class="site-state-item-count">29</span>
+          <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">14</span>
-        <span class="site-state-item-name">分类</span></a>
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">3</span>
-        <span class="site-state-item-name">标签</span></a>
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
 </div>
@@ -173,21 +173,21 @@
   
   
 
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
     <link itemprop="mainEntityOfPage" href="http://cherium.top/2020/03/11/prpractice/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="cherium">
+      <meta itemprop="name" content="clim">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ladder">
-      <meta itemprop="description" content="莫听穿林打叶声，何妨吟啸且徐行">
+      <meta itemprop="name" content="Warehouse">
+      <meta itemprop="description" content="">
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="PR CIFAR10 | Ladder">
+      <meta itemprop="name" content="PR CIFAR10 | Warehouse">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
@@ -201,22 +201,22 @@
       <span class="post-meta-item-icon">
         <i class="far fa-calendar"></i>
       </span>
-      <span class="post-meta-item-text">发表于</span>
+      <span class="post-meta-item-text">Posted on</span>
 
-      <time title="创建时间：2020-03-11 09:22:23" itemprop="dateCreated datePublished" datetime="2020-03-11T09:22:23+08:00">2020-03-11</time>
+      <time title="Created: 2020-03-11 09:22:23" itemprop="dateCreated datePublished" datetime="2020-03-11T09:22:23+08:00">2020-03-11</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-calendar-check"></i>
       </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-02-10 23:41:38" itemprop="dateModified" datetime="2023-02-10T23:41:38+08:00">2023-02-10</time>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2024-02-09 17:07:10" itemprop="dateModified" datetime="2024-02-09T17:07:10+08:00">2024-02-09</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-folder"></i>
       </span>
-      <span class="post-meta-item-text">分类于</span>
+      <span class="post-meta-item-text">In</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
           <a href="/categories/python/" itemprop="url" rel="index"><span itemprop="name">python</span></a>
         </span>
@@ -317,12 +317,8 @@ pool1 = tf.layers.pooling2d(conv1,
 </ul>
 <p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gfpwz1y68pj30s80qy44v.jpg" alt="image-20200612231726407"></p>
 <h2 id="问题总结"><a href="#问题总结" class="headerlink" title="问题总结"></a>问题总结</h2><ul>
-<li><p><code>tf.get_varable(&#39;name&#39;,[n,m],initializer=)</code>是一个使用异常定义的函数函数，这个 函数很有意思的一点是tensorflow是一个以计算图为切入点的网络编程语言，他面向对象编程的思路是很明显的，使用with定义函数的好处就是如果已有过存储空间中的变量导致的问题，就会抛出异常，很有效的避免了错误的混淆，但是之后使用<code>tf.layers.dense</code>	等借口其表现形式就不明了了。</p>
-</li>
-<li><p>jupyternotebook 存在内存污染的情况，可能是我内存不大够用</p>
-</li>
-<li><p>还是没有搞清楚卷积和池化层级对精度的影响</p>
-</li>
+<li><code>tf.get_varable(&#39;name&#39;,[n,m],initializer=)</code>是一个使用异常定义的函数函数，这个 函数很有意思的一点是tensorflow是一个以计算图为切入点的网络编程语言，他面向对象编程的思路是很明显的，使用with定义函数的好处就是如果已有过存储空间中的变量导致的问题，就会抛出异常，很有效的避免了错误的混淆，但是之后使用<code>tf.layers.dense</code>	等借口其表现形式就不明了了。</li>
+<li>还是没有搞清楚卷积和池化层级对精度的影响</li>
 </ul>
 
     </div>
@@ -337,14 +333,14 @@ pool1 = tf.layers.pooling2d(conv1,
 <div class="post-copyright">
 <ul>
   <li class="post-copyright-author">
-      <strong>本文作者： </strong>cherium
+      <strong>Post author:  </strong>clim
   </li>
   <li class="post-copyright-link">
-      <strong>本文链接：</strong>
+      <strong>Post link: </strong>
       <a href="http://cherium.top/2020/03/11/prpractice/" title="PR CIFAR10">http://cherium.top/2020/03/11/prpractice/</a>
   </li>
   <li class="post-copyright-license">
-    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+    <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.
   </li>
 </ul>
 </div>
@@ -385,18 +381,18 @@ pool1 = tf.layers.pooling2d(conv1,
 
 <div class="copyright">
   &copy; 2020 – 
-  <span itemprop="copyrightYear">2023</span>
+  <span itemprop="copyrightYear">2024</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">cherium</span>
+  <span class="author" itemprop="copyrightHolder">clim</span>
 </div>
 
     </div>
   </footer>
 
   
-  <div class="back-to-top" role="button" aria-label="返回顶部">
+  <div class="back-to-top" role="button" aria-label="Back to top">
     <i class="fa fa-arrow-up fa-lg"></i>
     <span>0%</span>
   </div>
