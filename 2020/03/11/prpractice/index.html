@@ -14,10 +14,10 @@
 
 
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha256-Z1K5uhUaJXA7Ll0XrZ/0JhX4lAtZFpT6jkKrEDT0drU=" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha256-yIDrPSXHZdOZhAqiBP7CKzIwMQmRCJ8UeB8Jo17YC4o=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"cherium.top","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.14.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"cherium.top","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.19.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
 
     <meta name="description" content="PR CIFAR10记录一下神经网络分类从单CNN的60%调参到90%。">
 <meta property="og:type" content="article">
@@ -231,8 +231,7 @@
     
     
     
-    <div class="post-body" itemprop="articleBody">
-        <h1 id="PR-CIFAR10"><a href="#PR-CIFAR10" class="headerlink" title="PR CIFAR10"></a>PR CIFAR10</h1><p>记录一下神经网络分类从单CNN的60%调参到90%。</p>
+    <div class="post-body" itemprop="articleBody"><h1 id="PR-CIFAR10"><a href="#PR-CIFAR10" class="headerlink" title="PR CIFAR10"></a>PR CIFAR10</h1><p>记录一下神经网络分类从单CNN的60%调参到90%。</p>
 <span id="more"></span>
 
 <h2 id="环境配置"><a href="#环境配置" class="headerlink" title="环境配置"></a>环境配置</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">conda create --name ts18 python==2.7</span><br><span class="line">conda info --<span class="built_in">env</span></span><br><span class="line">conda activate ~</span><br><span class="line">pip install -U pip</span><br><span class="line"><span class="comment"># 更新pip到20.3.1</span></span><br><span class="line">pip install jupyter</span><br><span class="line">jupyter notebook</span><br><span class="line"><span class="comment"># 报错 字符问题 强制英文</span></span><br><span class="line">UnicodeDecodeError: <span class="string">&#x27;ascii&#x27;</span> codec can<span class="string">&#x27;t decode byte 0xe5 in position 4: ordinal not in range(128)</span></span><br><span class="line"><span class="string">LANG = zn jupyter notebook</span></span><br><span class="line"><span class="string">###################################################</span></span><br><span class="line"><span class="string">pip install tensorflow==1.8</span></span><br><span class="line"><span class="string">python </span></span><br><span class="line"><span class="string">print tensorflow.__version__</span></span><br><span class="line"><span class="string">###################################################</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">cd Desktop&amp; mkdir prpy27</span></span><br><span class="line"><span class="string">cd prpy27</span></span><br><span class="line"><span class="string">jupter notebook</span></span><br><span class="line"><span class="string">control^c</span></span><br><span class="line"><span class="string">conda deactivate</span></span><br></pre></td></tr></table></figure>
@@ -340,7 +339,7 @@ pool1 = tf.layers.pooling2d(conv1,
       <a href="http://cherium.top/2020/03/11/prpractice/" title="PR CIFAR10">http://cherium.top/2020/03/11/prpractice/</a>
   </li>
   <li class="post-copyright-license">
-    <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.
+      <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.
   </li>
 </ul>
 </div>
@@ -354,12 +353,12 @@ pool1 = tf.layers.pooling2d(conv1,
           <div class="post-nav">
             <div class="post-nav-item">
                 <a href="/2020/02/28/UavContraller/" rel="prev" title="飞控与坐标转换">
-                  <i class="fa fa-chevron-left"></i> 飞控与坐标转换
+                  <i class="fa fa-angle-left"></i> 飞控与坐标转换
                 </a>
             </div>
             <div class="post-nav-item">
                 <a href="/2020/03/11/matlab/" rel="next" title="Matlab 基础">
-                  Matlab 基础 <i class="fa fa-chevron-right"></i>
+                  Matlab 基础 <i class="fa fa-angle-right"></i>
                 </a>
             </div>
           </div>
@@ -378,15 +377,14 @@ pool1 = tf.layers.pooling2d(conv1,
   <footer class="footer">
     <div class="footer-inner">
 
-
-<div class="copyright">
-  &copy; 2020 – 
-  <span itemprop="copyrightYear">2024</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">clim</span>
-</div>
+  <div class="copyright">
+    &copy; 2020 – 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">clim</span>
+  </div>
 
     </div>
   </footer>
@@ -403,10 +401,13 @@ pool1 = tf.layers.pooling2d(conv1,
 
 
   
+  <script size="300" alpha="0.6" zIndex="-1" src="https://cdnjs.cloudflare.com/ajax/libs/ribbon.js/1.0.2/ribbon.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
 <script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
 
   
+
+
 
 
 
